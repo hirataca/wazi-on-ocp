@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="In this step, you will run the demo!">
+<meta name="keywords" content=" ">
+<title>2. Running the demo | Cloud Integration</title>
+<link rel="stylesheet" href="css/syntax.css">
+
+
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<!--<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">-->
+<link rel="stylesheet" href="css/modern-business.css">
+<link rel="stylesheet" href="css/lavish-bootstrap.css">
+<link rel="stylesheet" href="css/customstyles.css">
+<link rel="stylesheet" href="css/theme-blue.css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+<script src="js/jquery.navgoco.min.js"></script>
+
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/2.0.0/anchor.min.js"></script>
+<script src="js/toc.js"></script>
+<script src="js/customscripts.js"></script>
+
+<link rel="shortcut icon" href="images/favicon.ico">
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+<link rel="alternate" type="application/rss+xml" title="" href="http://localhost:4000/feed.xml">
+
+    <script>
+        $(document).ready(function() {
+            // Initialize navgoco with default options
+            $("#mysidebar").navgoco({
+                caretHtml: '',
+                accordion: true,
+                openClass: 'active', // open
+                save: false, // leave false or nav highlighting doesn't work right
+                cookie: {
+                    name: 'navgoco',
+                    expires: false,
+                    path: '/'
+                },
+                slide: {
+                    duration: 400,
+                    easing: 'swing'
+                }
+            });
+
+            $("#collapseAll").click(function(e) {
+                e.preventDefault();
+                $("#mysidebar").navgoco('toggle', false);
+            });
+
+            $("#expandAll").click(function(e) {
+                e.preventDefault();
+                $("#mysidebar").navgoco('toggle', true);
+            });
+
+        });
+
+    </script>
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
+    <script>
+        $(document).ready(function() {
+            $("#tg-sb-link").click(function() {
+                $("#tg-sb-sidebar").toggle();
+                $("#tg-sb-content").toggleClass('col-md-9');
+                $("#tg-sb-content").toggleClass('col-md-12');
+                $("#tg-sb-icon").toggleClass('fa-toggle-on');
+                $("#tg-sb-icon").toggleClass('fa-toggle-off');
+            });
+        });
+    </script>
+    
+
+</head>
+<body>
+<!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container topnavlinks">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="fa fa-home fa-lg navbar-brand" href="index.html">&nbsp;<span class="projectTitle"> Cloud Integration</span></a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <!-- toggle sidebar button -->
+                <li><a id="tg-sb-link" href="#"><i id="tg-sb-icon" class="fa fa-toggle-on"></i> Nav</a></li>
+                <!-- entries without drop-downs appear here -->
+                
+                
+                
+                <!-- entries with drop-downs appear here -->
+                <!-- conditional logic to control which topnav appears for the audience defined in the configuration file.-->
+                
+                
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tech Guides<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        
+                        
+                        <li><a href="sfdemo_start.html">App Connect (Studio) Demo for Salesforce</a></li>
+                        
+                        
+                        
+                        <li><a href="df17labs_start.html">App Connect (Designer) Labs for Dreamforce 2017</a></li>
+                        
+                        
+                    </ul>
+                </li>
+                
+                
+                
+			<li>
+
+
+
+  <a class="email" title="Submit feedback" href="#" onclick="javascript:window.location='mailto:andygro@us.ibm.com?subject=Cloud Integration feedback&body=I have some feedback about the 2. Running the demo page: ' + window.location.href;"><i class="fa fa-envelope-o"></i> Feedback</a>
+
+</li>
+
+		
+                <!--comment out this block if you want to hide search-->
+                <li>
+                    <!--start search-->
+                    <div id="search-demo-container">
+                        <input type="text" id="search-input" placeholder="search...">
+                        <ul id="results-container"></ul>
+                    </div>
+                    <script src="js/jekyll-search.js" type="text/javascript"></script>
+                    <script type="text/javascript">
+                            SimpleJekyllSearch.init({
+                                searchInput: document.getElementById('search-input'),
+                                resultsContainer: document.getElementById('results-container'),
+                                dataSource: 'search.json',
+                                searchResultTemplate: '<li><a href="{url}" title="2. Running the demo">{title}</a></li>',
+                    noResultsText: 'No results found.',
+                            limit: 10,
+                            fuzzy: true,
+                    })
+                    </script>
+                    <!--end search-->
+                </li>
+            </ul>
+        </div>
+        </div>
+        <!-- /.container -->
+</nav>
+
+<!-- Page Content -->
+<div class="container">
+    <div class="col-lg-12">&nbsp;</div>
+    <!-- Content Row -->
+    <div class="row">
+        
+        
+            <!-- Sidebar Column -->
+            <div class="col-md-3" id="tg-sb-sidebar">
+                
+
+
+
+
+
+
+
+<div style="position: fixed"> <!--;overflow-y: auto;height: 90vh;-->
+<ul id="mysidebar" class="nav">
+    <li class="sidebarTitle"> </li>
+    
+    
+    
+    <li>
+        <a href="#">App Connect (Studio) Demo for Salesforce</a>
+        <ul>
+            
+            
+            
+            <li><a href="sfdemo_start.html">Introduction</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="sfdemo_step0.html">0. Setup access to Bluedemos.com</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="sfdemo_step1.html">1. Log into Bluedemos and reserve your demo instance</a></li>
+            
+            
+            
+            
+            
+            
+            <li class="active"><a href="sfdemo_step2.html">2. Running the demo</a></li>
+            
+            
+            
+            
+        </ul>
+     </li>
+       
+        
+        
+        <!-- if you aren't using the accordion, uncomment this block:
+           <p class="external">
+               <a href="#" id="collapseAll">Collapse All</a> | <a href="#" id="expandAll">Expand All</a>
+           </p>
+           -->
+</ul>
+</div>
+<!-- this highlights the active parent class in the navgoco sidebar. this is critical so that the parent expands when you're viewing a page. This must appear below the sidebar code above. Otherwise, if placed inside customscripts.js, the script runs before the sidebar code runs and the class never gets inserted.-->
+<script>$("li.active").parents('li').toggleClass("active");</script>
+
+            </div>
+            
+        
+
+        <!-- Content Column -->
+        <div class="col-md-9" id="tg-sb-content">
+            <div class="post-header">
+   <h1 class="post-title-main">2. Running the demo</h1>
+</div>
+
+
+
+<div class="post-content">
+
+   
+    <div class="summary">In this step, you will run the demo!</div>
+   
+
+    
+    
+<!-- this handles the automatic toc. use ## for subheads to auto-generate the on-page minitoc. if you use html tags, you must supply an ID for the heading element in order for it to appear in the minitoc. -->
+<script>
+$( document ).ready(function() {
+  // Handler for .ready() called.
+
+$('#toc').toc({ minimumHeaders: 0, listType: 'ul', showSpeed: 0, headers: 'h2,h3,h4' });
+
+/* this offset helps account for the space taken up by the floating toolbar. */
+$('#toc').on('click', 'a', function() {
+  var target = $(this.getAttribute('href'))
+    , scroll_target = target.offset().top
+
+  $(window).scrollTop(scroll_target - 10);
+  return false
+})
+  
+});
+</script>
+
+<div id="toc"></div>
+
+    
+
+
+    
+
+  <h2 id="objectives">Objectives</h2>
+<ol>
+  <li>Understand the story &amp; background for the demo.</li>
+  <li>Understand the basic steps to trigger the integration flow.</li>
+  <li>Understand what to show.</li>
+</ol>
+
+<h2 id="21-background">2.1 Background</h2>
+<p>Salesforce.com as a clould platform is leveraged by many organizations throughout the world, both large and small.  One of the primary concerns around adoption of a clould based platform such as Salesforce, is its ability to be integrated into the enterprise.  The demonstration here shows the art of the possible of showing what an integrated enterprise looks like from the perspective of cloud, on-premise and mobile set in the context of a typical work day scenario.</p>
+
+<p>The demo depicts the day in the life of a salesperson who is on the road to visit a customer.  This is a good customer for the company, where there is a pending large deal on the table and the salesperson wants to ensure everything is in order from a customer satisfaction standpoint.</p>
+
+<p>The scenario is set where the salesperson is in their rental car on the way to the customer, and before they pull of out of the parking lot, they check the Salesforce One mobile app and notice that one of the customers’ shipments from a very large order has been delayed.  In the past, the process of expediting customer shipments used to require multiple phone calls to different departments in different time zones and a lot of manual intervention.  To make matters worse, the custoner meeting is in 30 minutes, and this needs to be resolved ASAP.  The seller will then leverage the integrated solution using Salesforce One and IBM Cloud Integration to request a shipment upgrade, which the system processes automatically and instantly.</p>
+
+<p>The demonstration script is built around how an end user could trigger multiple backend processes through their use of Salesforce.com, showing how both cloud and on-premise applications can be integrated easily.</p>
+
+<p><strong>Hint</strong> it is highly suggested to run through the demo steps a few times about an hour before you do your actual demo.  This will give you the best performance for your demo.  Optimally, the synchronization and real time events happen in 1 second or less.</p>
+
+<h2 id="22-trigger-the-flow">2.2 Trigger the flow</h2>
+<ol>
+  <li>
+    <p>Before running the demo, Log into Salesforce via the browser on the demo VM.  You will find the credentials for Salesforce in the <strong>credentials.txt</strong> on the Desktop of the Windows VM</p>
+  </li>
+  <li>
+    <p>Start the Salesforce One Simulator from the desktop on the VM.  Log in with your credentials as per the <strong>credentials.txt</strong>.  <strong>Note</strong> When you log into the app for the first time, it is possible that you will be required to enter in a verification code to validate your login.  If this happens, Salesforce will send a message to a gmail address attached to this user.  To access this account, in your Chrome browser go to <code class="highlighter-rouge">Bookmarks</code> then select the gmail account for the ibm.salesforce.demo.user, it will login automatically for you.  The new mail will be at the top.  To proceed, open this mail and then enter in the code into the Salesforce emulator to complete the login process.</p>
+  </li>
+  <li>
+    <p>Once you are logged into Salesforce, Navigate to the <strong>Burlington Textiles of America</strong> account.  The default state of the Account should be with Shipment Status of green.  Be sure to check under <code class="highlighter-rouge">Details</code> you will see the flag icon that is green.  Additionally, under the <code class="highlighter-rouge">Related</code> tab you will see the <strong>Shipments</strong> object.  You should see a single shipment with the Priority of <code class="highlighter-rouge">Standard</code> and the Status of <code class="highlighter-rouge">Started</code>.  <strong>Note</strong> only the Burlington Textiles of America Account is to be used with the demo, as it is the only account set up currently with shipments.</p>
+  </li>
+  <li>
+    <p>If you see something different, you will need to reset the system.  There is a script on the Desktop of the Demo VM called <strong>reset.bat</strong>.  This will execute a cURL statement that will return the demo data to its default state.</p>
+  </li>
+  <li>
+    <p>The next step is to simulate the shipment being made late.  To do so, execute the <strong>makelate.bat</strong> script file that is on the desktop of the demo VM.  This will change the status of the shipment #1 to <code class="highlighter-rouge">Delayed</code>.  Doing so will change the shipment status flag to red on the Salesforce One App.</p>
+  </li>
+  <li>
+    <p>Next you will want to execute the Expedition of the shipment.  Do this by finding the <code class="highlighter-rouge">Expedite Shipment</code> button on the lower left hand corner of the screen in the Salesforce One Emulator.  This will pop up a window.  Fill out the form and select the values from the respective drop downs:  Select the contact of <code class="highlighter-rouge">Naomi Greenly</code>, Shipment should be set to <code class="highlighter-rouge">1</code> and then the two free form boxes of Subject and Description can be set to any value that you like.  Click the <code class="highlighter-rouge">Expedite</code> button to complete the process.  <strong>Note</strong> if you do not see the message “Success - Request sent Successfully” message inside of the Lightning app, it usually means their is a timeout in the connectivity.  If this is happends, try to execute the <code class="highlighter-rouge">Expedite Shipment</code> again by clicking the button in the app.</p>
+  </li>
+  <li>
+    <p>If everything processes correctly, within about 5 seconds (the current polling interval), the Shipment status will change to <code class="highlighter-rouge">Expedited</code>.</p>
+  </li>
+</ol>
+
+<h2 id="23-show-the-flow">2.3 Show the flow</h2>
+<ol>
+  <li>
+    <p>Typically, you would walk through the previous section as the end user to explain the experience.</p>
+  </li>
+  <li>
+    <p>Next, you will show some plumbing.  What you will show here will depend on what your audience is interested in.  There are a few key areas of focus on that you can cover completely, or in parts that are of interest to you.  Each of the main topics are covered in their own sections below.</p>
+
+    <ul>
+      <li>Messaging support via Streaming API and PushTopics</li>
+      <li>External Objects and OData 4.0 Support</li>
+      <li>Data Synchronization between Salesforce.com and External DB Systems</li>
+      <li>Exposing Applications as APIs</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="showing-messaging-support-via-streaming-apis-and-push-topics">Showing Messaging support via Streaming APIs and Push Topics</h3>
+
+<p><strong>Introduction:</strong>  To capture changes to data inside of Salesforce Objects, messaging events are generated in real time using the Streaming API that can be captured and sent out externally to a Push Topic.  In this demo, once the user inside the mobile app clicked the <code class="highlighter-rouge">Expedite Shipment</code> tab and filled in the dialogue box with the Shipment information, a check box on the Account object was enabled which triggered the PushTopic event.</p>
+
+<ol>
+  <li>
+    <p>To explain how the PushTopic interaction works, in the Slide Deck there is a screenshot of the code used to trigger off the event on the Account Object (Slide #11).  Note the query defined there that is the triggered once the event happens.  This payload is then deposited on a push Topic that is being monitored by an App Connect integration.  You can find the deck <a href="https://github.com/ibm-cloudintegration/techguides/blob/master/IBM%20CI%20for%20SF%20Demo.pptx">here</a>.</p>
+  </li>
+  <li>
+    <p>Next, you can return to the Demo VM and Open up MQ Explorer and show the Subscriptions (one is an MQ subscription that moves the message to an unused <code class="highlighter-rouge">IIB.QUEUE</code>, the other is the JMS app that moves the message to the <code class="highlighter-rouge">ACP.QUEUE</code>).</p>
+  </li>
+  <li>
+    <p>Staying in MQ Explorer, you can show the Queues, and since the <code class="highlighter-rouge">IIB.QUEUE</code> is not used, you can Browse data and show Properties to show the message that came out.</p>
+  </li>
+  <li>
+    <p>You can then open up the App Connect Project called <code class="highlighter-rouge">2_CIforSFDemo-MQBridge</code> which is the <code class="highlighter-rouge">c:\demos</code> directory on the Demo VM.  Here can you can step through and show how App Connect polls the Queue that is linked to the topic and triggers to update the Shipment Database and the Account Object.</p>
+  </li>
+</ol>
+
+<h3 id="external-objects-and-odata-40-support">External Objects and OData 4.0 Support</h3>
+
+<p><strong>Introduction:</strong>  To support OData, App Connect uses a Project that is exposing itself as a RESTful service that leverages OData 4.0 to expose an on-premise Database table that has Shipment information stored in it.  This OData service is mapped to an External Data Source in Salesforce that points to an endpoint where the OData Service is running, in this case its on an App Connect runtime environment that is running on a Docker Container in our demo environment.  The external Data Source is then mapped to an External Object, related to the Account object, and then made visible in the Salesforce UX.</p>
+
+<ol>
+  <li>
+    <p>OData is supported by implementing an App Connect Project which is bundled as a <strong>TIP</strong> which is short for <em>Templated Integration Project</em>.  The value of the TIP is that it is a working integration that has been put behind a configuration “wizard” that steps through how one would implement this TIP in their environment.  This allows the integration developer to customize and deploy an integration that has best practices around design and implementation but adapt it to their environment.  When you open up the OData project, the TIP configuration wizard will start automatically.  The OData project used with this demo is in the c:\demos directory on the Demo VM and is called <code class="highlighter-rouge">1_CIforSFDemo-ODataShipments</code>.</p>
+  </li>
+  <li>
+    <p>Once you step through the configuration wizard, you can close it and show the App Connect Project, which is quite sophisticated in what it is doing, but what the TIP is doing eliminating the complexity and allowing the Developer to realize value that much quicker.  Additionally, if the Developer wishes to customize this TIP to meet their needs, they have access to a full pallete of integration activities and transformation functions available to them.  They can accomplish this customization without having to write any code.</p>
+  </li>
+  <li>
+    <p>Go into Salesforce and show the External Data Source and External Object.  The Exernal Data Source used with the demo is <strong>ExtShipment</strong>.  Click on that and you can point out the endpoint where the OData service is running and other areas of the Data Source and External Object configuration screens if you wish.  You can return to the <strong>Account</strong> object to show where the <strong>Shipments</strong> external object is present in the Account Layout.</p>
+  </li>
+</ol>
+
+<h3 id="data-synchronization-between-salesforcecom-and-external-db-systems">Data Synchronization between Salesforce.com and External DB Systems</h3>
+
+<p><strong>Introduction:</strong>  App Connect is able to poll for changes in Real/Near Real Time on Cloud/On-Premise based systems.  This allows for richer, more accurate data to be made available to users of the integrated systems to make important business decisions versus slower, batch based integrations.  In this demonstration, App Connect is polling for changes in two different places.  First it is polling the Shipment Table on the On-premise DB for changes to a shipment status.</p>
+
+<ol>
+  <li>
+    <p>If the Shipment Status in the <strong>Shipment</strong> table is set to the value of <code class="highlighter-rouge">Delayed</code>, the orchestration will update a checkbox on the <strong>Account</strong> object in Salesforce called <code class="highlighter-rouge">A_Shipment_Is_Delayed</code>.  This is what guides the red/green Flag of the Shipment Status on <strong>Account</strong>.  Additionally, the Sync Process also polls a DB Table called  <strong>Incident</strong> which is populated once a Shipment is Expedited via the Mobile App.  The Salesforce Lightning code makes a call to an API that is exposed that will insert a new row into the <strong>Incident</strong> table (more on that in the next section), and once that row is inserted, it creates a new <strong>Case</strong> in Salesforce based on that incident.</p>
+  </li>
+  <li>
+    <p>You can then open up the App Connect Project called <code class="highlighter-rouge">3_CIforSFDemo-DataSync</code> which is the <code class="highlighter-rouge">c:\demos</code> directory on the Demo Windows VM.  Here can you can step through and show how App Connect polls the <strong>Incident</strong> and <strong>Shipment</strong> DB Tables in their respective orchestrations.</p>
+  </li>
+</ol>
+
+<h3 id="exposing-applications-as-apis">Exposing Applications as APIs</h3>
+
+<p><strong>Introduction:</strong>  Being able to expose back end resources as consumable APIs is the key to harnessing the power of the API Economy.  Leveraging standards such a REST, and using the powerful toolkit that App Connect Professional provides, gives the ability to quickly expose enterprise resources for other consumers to be able to use in Mobile, IoT and Web Applications.  These could mobile developers within the company, business partners or even non-affiliated mobile developers who are building apps to fit their business model.</p>
+
+<ol>
+  <li>
+    <p>As part of our demo, when we expedited the delayed shipment using the mobile application, that code invoked an API we created that is currently running on IBM’s API Connect solution.  That API is running in the cloud and pointing to a back end integration to our Shipment DB that was created by App Connect and Exposed as REST.  API Connect provides the secure runtime along with API versioning/release management, analytics and Developer Portal.  A deeper dive into API Connect is beyond the scope of this demo. For more information about API Connect go <a href="http://www-03.ibm.com/software/products/en/api-connect">here</a></p>
+  </li>
+  <li>
+    <p>To show how we can expose enterprise applications as APIs, you can open up the App Connect Project located on your demo VM in the <code class="highlighter-rouge">c:\demos</code> directory.  The Project is called <code class="highlighter-rouge">3_CIforSFDemo-API</code></p>
+  </li>
+  <li>
+    <p>The key points to go over here are to show how App Connect can easily expose integrations created as REST and support both the JSON and XML formats simply.  Note in the Read/Write JSON activities we use JSON sample metadata that Studio interprets graphically that can be mapped to using the functions and activities in the toolkit without having to write code.</p>
+  </li>
+</ol>
+
+<h3 id="optional-show-the-web-management-console">(Optional) Show the Web Management Console</h3>
+
+<p>Launch the App Connect WMC in Chrome and navigate to the completed orchestration.  Full logging is enabled for most of the Projects (except the OData), so you can show how every step in the orchestration provides a good amount of detail on inputs and outputs.  Credentials for the WMC can be found in the <strong>credentials.txt</strong> file on the Desktop of the Demo VM. <strong>Note</strong> the newly provisioned system might require you to allow the <code class="highlighter-rouge">Adobe Flash</code> add on to be enabled in the browser when you log into the WMC.  Allow the access for the browser to access the functions of the WMC.</p>
+
+
+    <div class="tags">
+        
+    </div>
+
+
+
+</div>
+
+<hr class="shaded"/>
+
+<footer>
+            <div class="row">
+                <div class="col-lg-6 footer-left">
+               &copy;2017 IBM. All rights reserved. <br />
+ Site last generated: Nov 8, 2017 <br />
+				</div>
+				<div class="col-lg-6 footer-right">
+					<p><img src="images/ibm-logo-small.png" alt="IBM"/></p>
+                </div>
+            </div>
+</footer>
+
+
+        </div>
+    <!-- /.row -->
+</div>
+<!-- /.container -->
+    </div>
+
+</body>
+
+</html>

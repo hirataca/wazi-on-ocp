@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Create flows for an API using models to implement operations">
+<meta name="keywords" content=" ">
+<title>Lab 2 | Cloud Integration</title>
+<link rel="stylesheet" href="css/syntax.css">
+
+
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<!--<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">-->
+<link rel="stylesheet" href="css/modern-business.css">
+<link rel="stylesheet" href="css/lavish-bootstrap.css">
+<link rel="stylesheet" href="css/customstyles.css">
+<link rel="stylesheet" href="css/theme-blue.css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+<script src="js/jquery.navgoco.min.js"></script>
+
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/2.0.0/anchor.min.js"></script>
+<script src="js/toc.js"></script>
+<script src="js/customscripts.js"></script>
+
+<link rel="shortcut icon" href="images/favicon.ico">
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+<link rel="alternate" type="application/rss+xml" title="" href="http://localhost:4000/feed.xml">
+
+    <script>
+        $(document).ready(function() {
+            // Initialize navgoco with default options
+            $("#mysidebar").navgoco({
+                caretHtml: '',
+                accordion: true,
+                openClass: 'active', // open
+                save: false, // leave false or nav highlighting doesn't work right
+                cookie: {
+                    name: 'navgoco',
+                    expires: false,
+                    path: '/'
+                },
+                slide: {
+                    duration: 400,
+                    easing: 'swing'
+                }
+            });
+
+            $("#collapseAll").click(function(e) {
+                e.preventDefault();
+                $("#mysidebar").navgoco('toggle', false);
+            });
+
+            $("#expandAll").click(function(e) {
+                e.preventDefault();
+                $("#mysidebar").navgoco('toggle', true);
+            });
+
+        });
+
+    </script>
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
+    <script>
+        $(document).ready(function() {
+            $("#tg-sb-link").click(function() {
+                $("#tg-sb-sidebar").toggle();
+                $("#tg-sb-content").toggleClass('col-md-9');
+                $("#tg-sb-content").toggleClass('col-md-12');
+                $("#tg-sb-icon").toggleClass('fa-toggle-on');
+                $("#tg-sb-icon").toggleClass('fa-toggle-off');
+            });
+        });
+    </script>
+    
+
+</head>
+<body>
+<!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container topnavlinks">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="fa fa-home fa-lg navbar-brand" href="index.html">&nbsp;<span class="projectTitle"> Cloud Integration</span></a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <!-- toggle sidebar button -->
+                <li><a id="tg-sb-link" href="#"><i id="tg-sb-icon" class="fa fa-toggle-on"></i> Nav</a></li>
+                <!-- entries without drop-downs appear here -->
+                
+                
+                
+                <!-- entries with drop-downs appear here -->
+                <!-- conditional logic to control which topnav appears for the audience defined in the configuration file.-->
+                
+                
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tech Guides<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        
+                        
+                        <li><a href="sfdemo_start.html">App Connect (Studio) Demo for Salesforce</a></li>
+                        
+                        
+                        
+                        <li><a href="df17labs_start.html">App Connect (Designer) Labs for Dreamforce 2017</a></li>
+                        
+                        
+                    </ul>
+                </li>
+                
+                
+                
+			<li>
+
+
+
+  <a class="email" title="Submit feedback" href="#" onclick="javascript:window.location='mailto:andygro@us.ibm.com?subject=Cloud Integration feedback&body=I have some feedback about the Lab 2 page: ' + window.location.href;"><i class="fa fa-envelope-o"></i> Feedback</a>
+
+</li>
+
+		
+                <!--comment out this block if you want to hide search-->
+                <li>
+                    <!--start search-->
+                    <div id="search-demo-container">
+                        <input type="text" id="search-input" placeholder="search...">
+                        <ul id="results-container"></ul>
+                    </div>
+                    <script src="js/jekyll-search.js" type="text/javascript"></script>
+                    <script type="text/javascript">
+                            SimpleJekyllSearch.init({
+                                searchInput: document.getElementById('search-input'),
+                                resultsContainer: document.getElementById('results-container'),
+                                dataSource: 'search.json',
+                                searchResultTemplate: '<li><a href="{url}" title="Lab 2">{title}</a></li>',
+                    noResultsText: 'No results found.',
+                            limit: 10,
+                            fuzzy: true,
+                    })
+                    </script>
+                    <!--end search-->
+                </li>
+            </ul>
+        </div>
+        </div>
+        <!-- /.container -->
+</nav>
+
+<!-- Page Content -->
+<div class="container">
+    <div class="col-lg-12">&nbsp;</div>
+    <!-- Content Row -->
+    <div class="row">
+        
+        
+            <!-- Sidebar Column -->
+            <div class="col-md-3" id="tg-sb-sidebar">
+                
+
+
+
+
+
+
+
+<div style="position: fixed"> <!--;overflow-y: auto;height: 90vh;-->
+<ul id="mysidebar" class="nav">
+    <li class="sidebarTitle"> </li>
+    
+    
+    
+    <li>
+        <a href="#">App Connect (Designer) Labs for Dreamforce 2017</a>
+        <ul>
+            
+            
+            
+            <li><a href="df17labs_start.html">Introduction and Getting Started</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="df17labs_1.html">1. Lab 1 - Connect your applications</a></li>
+            
+            
+            
+            
+            
+            
+            <li class="active"><a href="df17labs_2.html">2. Lab 2 - Create an API using flows</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="df17labs_creds.html">Logon Information</a></li>
+            
+            
+            
+            
+        </ul>
+     </li>
+       
+        
+        
+        <!-- if you aren't using the accordion, uncomment this block:
+           <p class="external">
+               <a href="#" id="collapseAll">Collapse All</a> | <a href="#" id="expandAll">Expand All</a>
+           </p>
+           -->
+</ul>
+</div>
+<!-- this highlights the active parent class in the navgoco sidebar. this is critical so that the parent expands when you're viewing a page. This must appear below the sidebar code above. Otherwise, if placed inside customscripts.js, the script runs before the sidebar code runs and the class never gets inserted.-->
+<script>$("li.active").parents('li').toggleClass("active");</script>
+
+            </div>
+            
+        
+
+        <!-- Content Column -->
+        <div class="col-md-9" id="tg-sb-content">
+            <div class="post-header">
+   <h1 class="post-title-main">Lab 2</h1>
+</div>
+
+
+
+<div class="post-content">
+
+   
+    <div class="summary">Create flows for an API using models to implement operations</div>
+   
+
+    
+
+
+    
+
+  <h1 id="integration-scenario-2--create-an-api-using-flows">Integration Scenario 2 – Create an API using flows</h1>
+
+<h2 id="overview">Overview</h2>
+<p><img src="./images/df17labs/kirk.png" alt="" /> <br />
+Kirk is responsible for keeping track of Paradise Audiophiles dealer network and registered customer base in their CRM system, sitting within a team of business analysts. Since the merger with Big Blue Tweeters they have reconciled their dealer information into Salesforce. He is working on a project with a business partner to build a mobile app for their dealers to register service requests, and they need an API. Kirk has done some coding before, but he isn’t a developer.</p>
+
+<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> Refer to the <a href="df17labs_creds.html">Logon Credentials</a> page for the userids and passwords you should use on your laptop. Everywhere you see ibmappconnect0XX in the lab instructions, replace XX with the ID you have been assigned.</div>
+
+<h2 id="log-into-ibm-app-connect">Log into IBM App Connect</h2>
+
+<ol>
+  <li>
+    <p>Launch the Chrome browser.</p>
+  </li>
+  <li>
+    <p>In your browser, go to <a href="https://designer.appconnect.ibmcloud.com/">https://designer.appconnect.ibmcloud.com/</a> and sign in with the <strong><em>ibmappconnect0XX@gmail.com</em></strong> account you have been given. <br />
+<img src="./images/df17labs/df2-image1.png" alt="" /></p>
+  </li>
+</ol>
+
+<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> If you are not presented with a login screen, <strong>then close all browser windows and start again</strong> to make sure you’re using the right login.</div>
+
+<h2 id="connect-ibm-app-connect-to-salesforce">Connect IBM App Connect to Salesforce</h2>
+<p>As Kirk, you know you want to build his API to create and retrieve “Case” objects in Paradise Audiophiles Salesforce CMR - because that’s what is used to track service tickets today. So you look and see if App Connect can connect to your Salesforce system.</p>
+
+<ol>
+  <li>Using IBM App Connect in your browser, if there are any flows on the dashboard written by a previous attendee, then you may stop and delete them if you wish.</li>
+  <li>
+    <p>Open the Applications tab and start typing “salesforce” … <br />
+<img src="./images/df17labs/df2-image2.png" alt="" /></p>
+  </li>
+  <li>
+    <p>If your App Connect account is not already connected to Salesforce you will see this indicated and you should click the Connect to Salesforce button: <br />
+<img src="./images/df17labs/df2-image3.png" alt="" /></p>
+  </li>
+  <li>
+    <p>Click continue at this dialog: <br />
+<img src="./images/df17labs/df2-image4.png" alt="" /></p>
+  </li>
+  <li>
+    <p>You will be taken through some dialogs to authenticate and grant access to App Connect: <br />
+<img src="./images/df17labs/df2-image5.png" alt="" /></p>
+
+    <div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> You might need to log into <a href="https://gmail.com">https://gmail.com</a> with the supplied details to obtain a verification code during the sign-in process.</div>
+  </li>
+</ol>
+
+<h2 id="define-your-api">Define your API</h2>
+<ol>
+  <li>
+    <p>Return to the dashboard and click New-&gt;Flow for an API to create an API: <br />
+<img src="./images/df17labs/df2-image6.png" alt="" /></p>
+  </li>
+  <li>
+    <p>We want an API for managing Service Tickets. Type “Service Tickets API” as the title of the API as shown below, and name the model for the resource “ServiceTickets” being careful to ensure that it is capitalised as shown and there is no space between ‘Service’ and ‘Tickets’.  <br />
+<img src="./images/df17labs/df2-image7.png" alt="" /></p>
+
+    <p>Then click Create model.</p>
+  </li>
+  <li>
+    <p>Now we need to create some properties on our ServiceTickets model. We know we are going to be updating a “Case” in Salesforce, so we will copy some of the properties of a ‘Case’ in salesforce into our model. Click on ‘Select properties from applications’: <br />
+<img src="./images/df17labs/df2-image8.png" alt="" /></p>
+  </li>
+  <li>
+    <p>Expand Salesforce:  <br />
+<img src="./images/df17labs/df2-image9.png" alt="" /></p>
+  </li>
+  <li>
+    <p>Then scroll down to ‘Case and expand it to see the properties of a ‘Case’ in salesforce: <br />
+<img src="./images/df17labs/df2-image10.png" alt="" />
+<img src="./images/df17labs/df2-image11.png" alt="" /></p>
+  </li>
+  <li>
+    <p>Choose the “Id”, “SuppliedEMail” and “Description” properties and click “Add Properties”. This will copy the selected properties into the Model for your API. You will be returned back to this screen with the properties you selected now filled in: <br />
+<img src="./images/df17labs/df2-image12.png" alt="" /></p>
+  </li>
+  <li>
+    <p>Now we add “MPN” as an additional field into the model, because we always use that terminology for the part number with our dealers (regardless of how it’s referred to in our CRM), and so that’s what the mobile developers will expect: <br />
+<img src="./images/df17labs/df2-image13.png" alt="" /></p>
+
+    <div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> Take care not to use spaces, to leave the “Required” checkbox unchecked on all fields, and mark the “ID” checkbox next to the field called “Id”</div>
+  </li>
+</ol>
+
+<h2 id="implement-the-create-operation">Implement the Create Operation</h2>
+<p>We now need to build the logic that connects this model to Salesforce.</p>
+
+<ol>
+  <li>
+    <p>Click on the Operations tab, and click the drop-down to add the “Create ServiceTickets” operation: <br />
+<img src="./images/df17labs/df2-image14.png" alt="" /></p>
+  </li>
+  <li>
+    <p>Click the button to start implementing the flow: <br />
+<img src="./images/df17labs/df2-image15.png" alt="" /></p>
+  </li>
+  <li>
+    <p>This will open the flow editor, and show you what a sample request will look like to your new API when it’s made by an app:<br />
+<img src="./images/df17labs/df2-image16.png" alt="" /></p>
+  </li>
+</ol>
+
+<h2 id="retrieve-the-contact-from-salesforce">Retrieve the contact from Salesforce</h2>
+<p>The mobile app is going to supply us just an e-mail address, but we need the full customer details to be able to create the ticket. So the first thing our flow needs to do is to retrieve the Contact from Salesforce.</p>
+
+<ol>
+  <li>
+    <p>Click the “+” button to add an action to the flow:<br />
+<img src="./images/df17labs/df2-image17-a.png" alt="" /></p>
+  </li>
+  <li>
+    <p>Scroll down to Salesforce and further scroll down and select the “Retrieve Contact” action:<br />
+<img src="./images/df17labs/df2-image17.png" alt="" /></p>
+  </li>
+  <li>
+    <p>Choose “EMail” as the left side of the lookup condition, and click the icon on the right to display a list of references that are available in the context at this point in the flow:<br />
+<img src="./images/df17labs/df2-image18.png" alt="" /></p>
+
+    <div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> We apologize if you see a lot of entries in the drop-down menu, including non-English language items and if these are not sorted alphabetically. This is a known issue at the time of writing this Lab, and will be addressed shortly.</div>
+  </li>
+  <li>
+    <p>Choose “SuppliedEmail” from the inbound request: <br />
+<img src="./images/df17labs/df2-image19.png" alt="" /></p>
+  </li>
+  <li>
+    <p>The configure the flow to only process the first matching Contact: <br />
+<img src="./images/df17labs/df2-image20.png" alt="" /></p>
+  </li>
+  <li>
+    <p>You now have a fully configured retrieve operation that will look for exactly one Contact in Salesforce that matches that e-mail address that will be included in the Request parameters when the API is invoked. If zero or more-than-one are found, then the flow will report an error when it runs. <br />
+<img src="./images/df17labs/df2-image21.png" alt="" /></p>
+  </li>
+</ol>
+
+<h2 id="lookup-the-product-by-mpn">Lookup the product by MPN</h2>
+<p>We also want the find the full details of the product from the MPN field that was passed in on the API call.</p>
+
+<ol>
+  <li>
+    <p>Click on the ‘+’ to the right of the salesforce Retrieve Contact node and add a Salesforce “Retrieve Product” operation to your flow. Then configure it as below: <br />
+<img src="./images/df17labs/df2-image22.png" alt="" /></p>
+  </li>
+  <li>
+    <p>Now configure the flow to only process the first matching Product:  <br />
+<img src="./images/df17labs/df2-image23.png" alt="" /></p>
+  </li>
+</ol>
+
+<h2 id="create-the-case-in-salesforce">Create the Case in Salesforce</h2>
+<p>Now we want to create the actual Case in Salesforce, using all the details we have retrieved.</p>
+
+<ol>
+  <li>
+    <p>Click on the ‘+’ to the right of the Retrieve Product node to add another node and  add a “Create Case” Salesforce action to the flow after Retrieve Product: <br />
+<img src="./images/df17labs/df2-image24.png" alt="" /></p>
+  </li>
+  <li>
+    <p>Configure the following fields in the Case, where “Web” is typed in as a literal value, and the other fields are filled in from references in the context. Note that if you begin typing then matching values will be displayed for you to select from.</p>
+
+    <ul>
+      <li>Some of the fields come from the incoming API request – “SuppliedEMail”, “MPN” and “Description”</li>
+      <li>Others come from the Salesforce Contact you retrieved – “Contact ID” and “Company”.</li>
+      <li>In “Description” you combine the “Product Name” you looked up in the Salesforce “Product” with the incoming “Description” from the API request.</li>
+    </ul>
+
+    <p>You will notice some field mappings have a warning associated with them, like:<br />
+ <img src="./images/df17labs/df2-image25.png" alt="" /></p>
+
+    <p>These are arrays. Click on the “How can I…?” link and see the suggestions:</p>
+
+    <p>For this lab example solution, indicate that you will single the first instance: <br />
+ <img src="./images/df17labs/df2-image26.png" alt="" /></p>
+
+    <p>The mapped fields should be:  <br />
+ <img src="./images/df17labs/df2-image27.png" alt="" /></p>
+  </li>
+</ol>
+
+<h2 id="return-the-id-of-the-new-service-ticket">Return the ID of the new Service Ticket</h2>
+<p>We want the API to return an identifier that the app can use as a reference to retrieve this ticket later. We will use the Salesforce Case ID directly for this.</p>
+
+<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> The best ways to manage IDs across systems is something we are actively exploring. If you are interested in engaging with us on this topic, we would love you sign up to our sponsored user program.</div>
+
+<ol>
+  <li>
+    <p>Click on the Response action in the flow, and fill in the reply mapping for “Id” to “Case ID” from the Salesforce Create Case action (there is no need to fill in the other fields). Note that the simplest way to do this is to type ‘case’ and select Case Id as shown below. <br />
+<img src="./images/df17labs/df2-image28.png" alt="" /></p>
+  </li>
+  <li>
+    <p>Click on the source field to set the mapping: <br />
+<img src="./images/df17labs/df2-image29.png" alt="" /></p>
+  </li>
+</ol>
+
+<h2 id="switch-on-your-api">Switch on your API</h2>
+<p>Now we have the first operation on our API – to create ServiceTickets by retrieving Contacts and Products from Salesforce, and create Cases. So let’s give it a try.</p>
+
+<ol>
+  <li>
+    <p>Click “Done” to exit the flow editor: <br />
+<img src="./images/df17labs/df2-image30.png" alt="" /></p>
+  </li>
+  <li>
+    <p>Click on the menu in the top-right and select “Start API”: <br />
+<img src="./images/df17labs/df2-image31.png" alt="" /></p>
+
+    <div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> If the “Start API” option is greyed out, click back into Operations -&gt; Edit Flow to re-enter the flow editor. Then click on each Action in turn, letting the page load and then check there are no missing details. Then click “Done” and try to start the API again. There is a known issue at the time of writing. This issue is to be addressed shortly.</div>
+  </li>
+  <li>
+    <p>Return to the dashboard; the flow API is running: <br />
+<img src="./images/df17labs/df2-image32.png" alt="" /></p>
+  </li>
+</ol>
+
+<h2 id="create-a-contact-and-product-in-salesforce-to-test">Create a Contact and Product in Salesforce to test</h2>
+<p>So that we can try out our API, we will create some objects in Salesforce.</p>
+
+<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> Please create unique objects for yourself in Salesforce, and try to make the e-mail address and Product Code in particular different to any existing objects in Salesforce. This will help avoid unexpected results due to your API finding the objects created by other users of the Lab.</div>
+
+<ol>
+  <li>Log into Salesforce at <a href="https://login.salesforce.com">https://login.salesforce.com</a></li>
+  <li>
+    <p>Click to create a new Contact:  <br />
+<img src="./images/df17labs/df2-image33.png" alt="" /></p>
+  </li>
+  <li>
+    <p>Make sure to fill in the “Name”, “Last Name” and “Email” with some suitably unique values: <br />
+<img src="./images/df17labs/df2-image34.png" alt="" /></p>
+  </li>
+  <li>
+    <p>Open the App Launcher:  <br />
+<img src="./images/df17labs/df2-image35.png" alt="" /></p>
+  </li>
+  <li>
+    <p>Select “Products”<br />
+<img src="./images/df17labs/df2-image36.png" alt="" /></p>
+  </li>
+  <li>Create a new Product with a suitably unique “Name“, and “Product Code”:  <br />
+<img src="./images/df17labs/df2-image37.png" alt="" /></li>
+</ol>
+
+<h2 id="test-your-new-api-operation">Test your new API operation</h2>
+<p>Now we want to test our API and see what it can do.</p>
+
+<ol>
+  <li>Using your Chrome browser, start the Postman plugin tool using the App Launcher:</li>
+  <li>
+    <p>Before we can test our API, do that we need to know the details of how our API has been exposed by App Connect. From the dashboard, open the API: <br />
+<img src="./images/df17labs/df2-image38.png" alt="" /></p>
+  </li>
+  <li>
+    <p>Then click <strong>Manage</strong>:  <br />
+<img src="./images/df17labs/df2-image39.png" alt="" /></p>
+  </li>
+  <li>
+    <p>This shows the URL and credentials for the API. Leave the browser open as you will use the <strong>Copy to clipboard</strong> link in a minute: <br />
+<img src="./images/df17labs/df2-image40.png" alt="" /></p>
+  </li>
+  <li>Go to the Postman tool launched from the Chrome browser. Click the Authorization tab, and then:
+    <ol>
+      <li>Set the verb to POST.</li>
+      <li>Set the URL to the API of the URL. To this you must append the resource name of <strong>ServiceTickets</strong>.</li>
+      <li>Set the authorization type to <strong>Basic Auth</strong>, and then set  the credentials of user and password.      <br />
+ <img src="./images/df17labs/df2-image41.png" alt="" /></li>
+    </ol>
+  </li>
+  <li>Still from within Postman, then click the Body tab, and then:
+    <ol>
+      <li>Click <strong>raw</strong>.</li>
+      <li>Set type as JSON.</li>
+      <li>Enter the JSON request in the body pane. You may copy and paste from the code snippet shown below replacing the samples with the data you entered in Salesforce.</li>
+      <li>Press <strong>Send</strong>.  <br />
+ <img src="./images/df17labs/df2-image42.png" alt="" /></li>
+    </ol>
+
+    <p><code class="highlighter-rouge"><span class="p">{</span><span class="w"> 
+     </span><span class="nt">"Description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sample_description"</span><span class="p">,</span><span class="w"> 
+     </span><span class="nt">"Id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sample_id"</span><span class="p">,</span><span class="w">
+     </span><span class="nt">"SuppliedEmail"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sample_suppliedemail"</span><span class="p">,</span><span class="w">
+     </span><span class="nt">"MPN"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sample_MPN"</span><span class="w">
+ </span><span class="p">}</span></code></p>
+  </li>
+  <li>You should see a successful HTTP response code of 201 and a JSON response returned.</li>
+</ol>
+
+<h2 id="examine-the-new-case-in-salesforce">Examine the new Case in Salesforce</h2>
+<p>If you navigate back to <a href="https://login.salesforce.com">https://login.salesforce.com</a> in your browser, and look at Cases. If they are not on the header bar, can find them via the “App Launcher” you used to find “Products” in Salesforce.   <br />
+<img src="./images/df17labs/df2-image43.png" alt="" /></p>
+
+<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> You have now created and tested an API exposed by IBM App Connect!
+You can stop here, go to another exercise, or continue and add more operations and logic to this API at your leisure.</div>
+
+<p> </p>
+<h2 id="thank-you">Thank You!</h2>
+
+<p>In this Lab you’ve seen how IBM App Connect lets you build flows driven by events and flows that implement an API. You have seen how the APIs are defined so that they conform to the conventions modern developers expect, and that you can build flows quickly via rich graphical tooling with multiple operations and logic.  <br />
+<img src="./images/df17labs/df2-image44.png" alt="" /></p>
+
+<h3 id="want-to-learn-more">Want to learn more?</h3>
+<p>If you didn’t complete the lab exercises or want to go further, then why not sign up for a free trial? Go to <a href="https://designer.appconnect.ibmcloud.com/">https://designer.appconnect.ibmcloud.com/</a>newAccount and complete the registration.</p>
+
+<h3 id="do-you-want-to-keep-up-to-date-or-influence-the-product">Do you want to keep up to date or influence the product?</h3>
+<p>IBM App Connect is a rapidly evolving service in IBM Cloud. If you have been interested by what you’ve explored in the product today, then please sign up to our sponsored user program. The program provides the opportunity for you to influence how we extend and enhance the product to meet the needs of our customers.  <br />
+<img src="./images/df17labs/df2-image45.png" alt="" />
+  </p>
+
+
+    <div class="tags">
+        
+    </div>
+
+
+
+</div>
+
+<hr class="shaded"/>
+
+<footer>
+            <div class="row">
+                <div class="col-lg-6 footer-left">
+               &copy;2017 IBM. All rights reserved. <br />
+ Site last generated: Nov 8, 2017 <br />
+				</div>
+				<div class="col-lg-6 footer-right">
+					<p><img src="images/ibm-logo-small.png" alt="IBM"/></p>
+                </div>
+            </div>
+</footer>
+
+
+        </div>
+    <!-- /.row -->
+</div>
+<!-- /.container -->
+    </div>
+
+</body>
+
+</html>

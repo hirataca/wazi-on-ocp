@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" xmlns:ras="http://www.sarathambadas.com/xmlns/prod/sarath" targetNamespace="http://www.sarathambadas.com/xmlns/prod/sarath">
+
+<element name="shipment" type="ras:ShipmentObject"/>
+
+<complexType name="ShipmentObject">
+<sequence maxOccurs="1" minOccurs="1">
+<element maxOccurs="1" minOccurs="1" name="Description" type="string"/>
+<element maxOccurs="1" minOccurs="1" name="ExternalAccountID" type="string"/>
+<element maxOccurs="1" minOccurs="1" name="Priority" type="string"/>
+<element maxOccurs="1" minOccurs="1" name="Status" type="string"/>
+<element maxOccurs="1" minOccurs="1" name="shipmentid" type="int"/>
+</sequence>
+</complexType>
+</schema>

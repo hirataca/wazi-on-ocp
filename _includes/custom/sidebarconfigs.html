@@ -1,0 +1,26 @@
+{% if page.sidebar == "sfdemo" %}
+{% assign sidebar = site.data.sidebars.sfdemo_sidebar.entries %}
+
+{% elsif page.sidebar == "df17labs" %}
+{% assign sidebar = site.data.sidebars.df17labs_sidebar.entries %}
+
+{% comment %}
+
+{% elsif page.sidebar == "mydoc_sidebar" %}
+{% assign sidebar = site.data.sidebars.mydoc_sidebar.entries %}
+
+{% endcomment %}
+
+{% else %}
+{% assign sidebar = site.data.sidebars.home_sidebar.entries %}
+
+{% endif %}
+
+
+{% comment %}
+sidebar configuration for print files
+{% endcomment %}
+
+{% if site.product == "sfdemo" %}
+{% assign sidebar_pdf = site.data.sidebars.sfdemo_sidebar.entries %}
+{% endif %}

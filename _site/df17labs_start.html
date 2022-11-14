@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="This guide provides lab instructions for App Connect at Dreamforce 2017.">
+<meta name="keywords" content=" ">
+<title>Labs Introduction | Cloud Integration</title>
+<link rel="stylesheet" href="css/syntax.css">
+
+
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<!--<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">-->
+<link rel="stylesheet" href="css/modern-business.css">
+<link rel="stylesheet" href="css/lavish-bootstrap.css">
+<link rel="stylesheet" href="css/customstyles.css">
+<link rel="stylesheet" href="css/theme-blue.css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+<script src="js/jquery.navgoco.min.js"></script>
+
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/2.0.0/anchor.min.js"></script>
+<script src="js/toc.js"></script>
+<script src="js/customscripts.js"></script>
+
+<link rel="shortcut icon" href="images/favicon.ico">
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+<link rel="alternate" type="application/rss+xml" title="" href="http://localhost:4000/feed.xml">
+
+    <script>
+        $(document).ready(function() {
+            // Initialize navgoco with default options
+            $("#mysidebar").navgoco({
+                caretHtml: '',
+                accordion: true,
+                openClass: 'active', // open
+                save: false, // leave false or nav highlighting doesn't work right
+                cookie: {
+                    name: 'navgoco',
+                    expires: false,
+                    path: '/'
+                },
+                slide: {
+                    duration: 400,
+                    easing: 'swing'
+                }
+            });
+
+            $("#collapseAll").click(function(e) {
+                e.preventDefault();
+                $("#mysidebar").navgoco('toggle', false);
+            });
+
+            $("#expandAll").click(function(e) {
+                e.preventDefault();
+                $("#mysidebar").navgoco('toggle', true);
+            });
+
+        });
+
+    </script>
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
+    <script>
+        $(document).ready(function() {
+            $("#tg-sb-link").click(function() {
+                $("#tg-sb-sidebar").toggle();
+                $("#tg-sb-content").toggleClass('col-md-9');
+                $("#tg-sb-content").toggleClass('col-md-12');
+                $("#tg-sb-icon").toggleClass('fa-toggle-on');
+                $("#tg-sb-icon").toggleClass('fa-toggle-off');
+            });
+        });
+    </script>
+    
+
+</head>
+<body>
+<!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container topnavlinks">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="fa fa-home fa-lg navbar-brand" href="index.html">&nbsp;<span class="projectTitle"> Cloud Integration</span></a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <!-- toggle sidebar button -->
+                <li><a id="tg-sb-link" href="#"><i id="tg-sb-icon" class="fa fa-toggle-on"></i> Nav</a></li>
+                <!-- entries without drop-downs appear here -->
+                
+                
+                
+                <!-- entries with drop-downs appear here -->
+                <!-- conditional logic to control which topnav appears for the audience defined in the configuration file.-->
+                
+                
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tech Guides<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        
+                        
+                        <li><a href="sfdemo_start.html">App Connect (Studio) Demo for Salesforce</a></li>
+                        
+                        
+                        
+                        <li class="dropdownActive"><a href="df17labs_start.html">App Connect (Designer) Labs for Dreamforce 2017</a></li>
+                        
+                        
+                    </ul>
+                </li>
+                
+                
+                
+			<li>
+
+
+
+  <a class="email" title="Submit feedback" href="#" onclick="javascript:window.location='mailto:andygro@us.ibm.com?subject=Cloud Integration feedback&body=I have some feedback about the Labs Introduction page: ' + window.location.href;"><i class="fa fa-envelope-o"></i> Feedback</a>
+
+</li>
+
+		
+                <!--comment out this block if you want to hide search-->
+                <li>
+                    <!--start search-->
+                    <div id="search-demo-container">
+                        <input type="text" id="search-input" placeholder="search...">
+                        <ul id="results-container"></ul>
+                    </div>
+                    <script src="js/jekyll-search.js" type="text/javascript"></script>
+                    <script type="text/javascript">
+                            SimpleJekyllSearch.init({
+                                searchInput: document.getElementById('search-input'),
+                                resultsContainer: document.getElementById('results-container'),
+                                dataSource: 'search.json',
+                                searchResultTemplate: '<li><a href="{url}" title="Labs Introduction">{title}</a></li>',
+                    noResultsText: 'No results found.',
+                            limit: 10,
+                            fuzzy: true,
+                    })
+                    </script>
+                    <!--end search-->
+                </li>
+            </ul>
+        </div>
+        </div>
+        <!-- /.container -->
+</nav>
+
+<!-- Page Content -->
+<div class="container">
+    <div class="col-lg-12">&nbsp;</div>
+    <!-- Content Row -->
+    <div class="row">
+        
+        
+            <!-- Sidebar Column -->
+            <div class="col-md-3" id="tg-sb-sidebar">
+                
+
+
+
+
+
+
+
+<div style="position: fixed"> <!--;overflow-y: auto;height: 90vh;-->
+<ul id="mysidebar" class="nav">
+    <li class="sidebarTitle"> </li>
+    
+    
+    
+    <li>
+        <a href="#">App Connect (Designer) Labs for Dreamforce 2017</a>
+        <ul>
+            
+            
+            
+            <li class="active"><a href="df17labs_start.html">Introduction and Getting Started</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="df17labs_1.html">1. Lab 1 - Connect your applications</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="df17labs_2.html">2. Lab 2 - Create an API using flows</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="df17labs_creds.html">Logon Information</a></li>
+            
+            
+            
+            
+        </ul>
+     </li>
+       
+        
+        
+        <!-- if you aren't using the accordion, uncomment this block:
+           <p class="external">
+               <a href="#" id="collapseAll">Collapse All</a> | <a href="#" id="expandAll">Expand All</a>
+           </p>
+           -->
+</ul>
+</div>
+<!-- this highlights the active parent class in the navgoco sidebar. this is critical so that the parent expands when you're viewing a page. This must appear below the sidebar code above. Otherwise, if placed inside customscripts.js, the script runs before the sidebar code runs and the class never gets inserted.-->
+<script>$("li.active").parents('li').toggleClass("active");</script>
+
+            </div>
+            
+        
+
+        <!-- Content Column -->
+        <div class="col-md-9" id="tg-sb-content">
+            <div class="post-header">
+   <h1 class="post-title-main">Labs Introduction</h1>
+</div>
+
+
+
+<div class="post-content">
+
+   
+    <div class="summary">This guide provides lab instructions for App Connect at Dreamforce 2017.</div>
+   
+
+    
+
+
+    
+
+  <h1 id="experience-how-to-integrate-cloud-applications-and-expose-them-as-apis-using-app-connect">Experience How to Integrate Cloud Applications and Expose Them as APIs Using App Connect</h1>
+
+<h2 id="overview">Overview</h2>
+<p>IBM® App Connect helps you automate workflows and integrate data, applications and APIs across hybrid cloud environments.</p>
+
+<p>In this lab we focus on the App Connect offering which provides features for simple, guided app-to-app integration. With IBM App Connect you can link your applications so that when something happens in one application, other relevant applications get updated automatically, so you can:</p>
+
+<ul>
+  <li>Stop wasting time on repetitive manual tasks</li>
+  <li>Use this intuitive business tool to take back control</li>
+  <li>Link your apps in a few simple steps</li>
+</ul>
+
+<p>These short exercises demonstrate the key integration capabilities of App Connect. Because this product is a cloud based SaaS offering you can explore it yourself easily from anywhere.</p>
+
+<h2 id="meet-paradise-audiophiles-fictional">Meet Paradise Audiophiles (Fictional)</h2>
+<p>Paradise Audiophiles is a high-end HiFi manufacturer, with 50 years of history building the best in high quality audio and home cinema equipment. They started small, with artisan attention to detail, components and sound quality. They’ve grown over the years building on this reputation, and are embracing new technologies and business approaches.</p>
+
+<p>5 years ago they realised they needed to make a big change to keep up with the market, and they merged with a speaker manufacturer, Big Blue Tweeters, with an overlapping customer base. The best engineers from the two companies joined forces to design their latest range. They took a radically different approach building compact visually beautiful products that fit into modern digital lifestyles – as well as providing the purity of sound both companies are renowned for.</p>
+
+<p>They sell through a network of small independent dealers, and target the mid to high level market – with individual products such as selling from $500 to in excess of $20,000.</p>
+
+<h2 id="choose-your-scenario">Choose your scenario</h2>
+
+<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> Pick the scenario that interests you most and if you have time, look at another one.</div>
+
+<p>Work through both scenarios if you have time, or jump to the one that interests you most. If you don’t manage to complete them, you can always do so using your own trial account when you return home. See the end of this guide for more details.</p>
+
+<p><strong><em>Integration Scenario 1 – Connect your Applications</em></strong></p>
+
+<p><img src="./images/df17labs/cassie.png" alt="" /> Cassie is a rising star in the marketing department. She is always looking for new digital tools to engage with customers, and has recently started using a SaaS service called Mailchimp to revolutionise email marketing within Paradise Audiophiles. However, she is frustrated with how much time she spends sifting through responses, and reconciling them with their Salesforce CRM system.</p>
+
+<p><strong><em>Integration Scenario 2 – Create an API using Flows</em></strong></p>
+
+<p><img src="./images//df17labs/kirk.png" alt="" /> Kirk is responsible for keeping track of Paradise Audiofiles dealer network and registered customer base in their CRM system, sitting within a team of business analysts. Since the merger with Big Blue Tweeters they have reconciled their dealer information into Salesforce. He is working on a project with a business partner to build a mobile app for their dealers to register service requests, and they need an API. Kirk has done some coding before, but he isn’t a developer.</p>
+
+<p>The exercises are based upon Chrome as the default browser so it is suggested this be used.</p>
+
+
+    <div class="tags">
+        
+    </div>
+
+
+
+</div>
+
+<hr class="shaded"/>
+
+<footer>
+            <div class="row">
+                <div class="col-lg-6 footer-left">
+               &copy;2017 IBM. All rights reserved. <br />
+ Site last generated: Nov 8, 2017 <br />
+				</div>
+				<div class="col-lg-6 footer-right">
+					<p><img src="images/ibm-logo-small.png" alt="IBM"/></p>
+                </div>
+            </div>
+</footer>
+
+
+        </div>
+    <!-- /.row -->
+</div>
+<!-- /.container -->
+    </div>
+
+</body>
+
+</html>

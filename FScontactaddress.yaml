@@ -1,0 +1,581 @@
+$integration: 'http://ibm.com/appconnect/integration/v2/integrationFile'
+integration:
+  type: api
+  trigger-interfaces:
+    trigger-interface-1:
+      triggers:
+        createContactaddress:
+          assembly:
+            $ref: '#/integration/assemblies/assembly-1'
+          input-context:
+            data: contactaddress
+          output-context:
+            data: contactaddress
+      options:
+        resources:
+          - business-object: contactaddress
+            model:
+              $ref: '#/models/contactaddress'
+            triggers:
+              create: createContactaddress
+      type: api-trigger
+  action-interfaces:
+    action-interface-1:
+      type: api-action
+      business-object: request
+      connector-type: http
+      account-name: Account 1
+      actions:
+        INVOKE: {}
+    action-interface-2:
+      type: api-action
+      business-object: request
+      connector-type: http
+      account-name: Account 1
+      actions:
+        INVOKE: {}
+    action-interface-3:
+      type: api-action
+      business-object: Contact
+      connector-type: salesforce
+      account-name: Account 1
+      actions:
+        UPSERTWITHWHERE: {}
+  assemblies:
+    assembly-1:
+      assembly:
+        execute:
+          - custom-action:
+              name: HTTP Invoke method
+              target:
+                $ref: '#/integration/action-interfaces/action-interface-1'
+              action: INVOKE
+              map:
+                mappings:
+                  - method:
+                      template: POST
+                  - requestHeaders:
+                      expression: >-
+                        {"Content-Type":"application/json","Accept":"application/json","X-IBM-Client-ID":"a059d491-5c07-47ec-9bc3-7e25c44728ed"}
+                  - url:
+                      template: >-
+                        https://service.us.apiconnect.ibmcloud.com/gws/apigateway/api/9369beb5578108ad97c4d09cad46e060550480ae9c171369fa74976955506891/Gt3Xap/oauthtoken
+                $map: 'http://ibm.com/appconnect/map/v1'
+                input:
+                  - variable: Request
+                    $ref: '#/trigger/payload'
+          - parse:
+              name: JSON Parser Parse
+              parse-format: json
+              source:
+                template: '{{$HTTPInvokemethod.responseBody}}'
+                input:
+                  - variable: Request
+                    $ref: '#/trigger/payload'
+                  - variable: HTTPInvokemethod
+                    $ref: '#/node-output/HTTP Invoke method/response/payload'
+                  - variable: HTTPInvokemethodMetadata
+                    $ref: '#/node-output/HTTP Invoke method/response'
+              sample-data: |-
+                {
+                    "bearer_token": "cb6c155c-5c67-44d3-9aa8-fe93f909ec16",
+                    "expiresin": "2073006",
+                    "userid": ""
+                }
+              output-schema:
+                $schema: 'http://json-schema.org/draft-04/schema#'
+                type: object
+                properties:
+                  bearer_token:
+                    type: string
+                  expiresin:
+                    type: string
+                  userid:
+                    type: string
+                title: Parsed JSON
+          - custom-action:
+              name: HTTP Invoke method 2
+              target:
+                $ref: '#/integration/action-interfaces/action-interface-2'
+              action: INVOKE
+              map:
+                mappings:
+                  - method:
+                      template: GET
+                  - requestHeaders:
+                      expression: >-
+                        {"Content-Type":"application/json","Accept":"application/json","X-IBM-Client-ID":"f208e0de-f39a-454d-8065-4eb872540af7","Authorization":"Bearer
+                        "&$JSONParserParse.bearer_token&""}
+                  - url:
+                      template: >-
+                        https://service.us.apiconnect.ibmcloud.com/gws/apigateway/api/9369beb5578108ad97c4d09cad46e060550480ae9c171369fa74976955506891/WgPJTi/address/fetch
+                $map: 'http://ibm.com/appconnect/map/v1'
+                input:
+                  - variable: Request
+                    $ref: '#/trigger/payload'
+                  - variable: HTTPInvokemethod
+                    $ref: '#/node-output/HTTP Invoke method/response/payload'
+                  - variable: HTTPInvokemethodMetadata
+                    $ref: '#/node-output/HTTP Invoke method/response'
+                  - variable: JSONParserParse
+                    $ref: '#/node-output/JSON Parser Parse/response/payload'
+          - parse:
+              name: JSON Parser Parse 2
+              parse-format: json
+              source:
+                template: '{{$HTTPInvokemethod2.responseBody}}'
+                input:
+                  - variable: Request
+                    $ref: '#/trigger/payload'
+                  - variable: HTTPInvokemethod
+                    $ref: '#/node-output/HTTP Invoke method/response/payload'
+                  - variable: HTTPInvokemethodMetadata
+                    $ref: '#/node-output/HTTP Invoke method/response'
+                  - variable: JSONParserParse
+                    $ref: '#/node-output/JSON Parser Parse/response/payload'
+                  - variable: HTTPInvokemethod2
+                    $ref: '#/node-output/HTTP Invoke method 2/response/payload'
+                  - variable: HTTPInvokemethod2Metadata
+                    $ref: '#/node-output/HTTP Invoke method 2/response'
+              sample-data: |-
+                {
+                  "address": {
+                    "addresses": [
+                      {
+                        "country": {
+                          "isocode": "US"
+                        },
+                        "defaultAddress": false,
+                        "firstName": "Richard",
+                        "id": "8796095676439",
+                        "lastName": "Dean",
+                        "line1": "First St.",
+                        "line2": "",
+                        "postalCode": "10001",
+                        "region": {
+                          "isocode": "US-CA"
+                        },
+                        "town": "San Francisco"
+                      },
+                      {
+                        "country": {
+                          "isocode": "US"
+                        },
+                        "defaultAddress": false,
+                        "firstName": "Mike",
+                        "id": "8796224651287",
+                        "lastName": "Alley",
+                        "line1": "1061 W Addison Street",
+                        "line2": "",
+                        "postalCode": "60613",
+                        "region": {
+                          "isocode": "US-IL"
+                        },
+                        "town": "Chicago"
+                      },
+                      {
+                        "country": {
+                          "isocode": "US"
+                        },
+                        "defaultAddress": false,
+                        "firstName": "Herman",
+                        "id": "8796225339415",
+                        "lastName": "Munster",
+                        "line1": "200 West Monroe St",
+                        "line2": "",
+                        "postalCode": "60680",
+                        "region": {
+                          "isocode": "US-IL"
+                        },
+                        "town": "Chicago"
+                      },
+                      {
+                        "country": {
+                          "isocode": "US"
+                        },
+                        "defaultAddress": false,
+                        "firstName": "Fred",
+                        "id": "8796225503255",
+                        "lastName": "Flintstone",
+                        "line1": "3501 Shields Street",
+                        "line2": "",
+                        "postalCode": "60680",
+                        "region": {
+                          "isocode": "US-IL"
+                        },
+                        "town": "Chicago"
+                      },
+                      {
+                        "country": {
+                          "isocode": "US"
+                        },
+                        "defaultAddress": false,
+                        "firstName": "Jayden",
+                        "id": "8796257157143",
+                        "lastName": "Allen",
+                        "line1": "7931 Glenwood",
+                        "line2": "",
+                        "postalCode": "76907",
+                        "region": {
+                          "isocode": "US-TX"
+                        },
+                        "town": "Arlington"
+                      },
+                      {
+                        "country": {
+                          "isocode": "US"
+                        },
+                        "defaultAddress": false,
+                        "firstName": "Boaty",
+                        "id": "8796260106263",
+                        "lastName": "McBoatface2",
+                        "line1": "535 E Madison",
+                        "line2": "",
+                        "postalCode": "60613",
+                        "region": {
+                          "isocode": "US-IL"
+                        },
+                        "town": "Chicago"
+                      },
+                      {
+                        "country": {
+                          "isocode": "US"
+                        },
+                        "defaultAddress": false,
+                        "firstName": "test5",
+                        "id": "8796260270103",
+                        "lastName": "test5",
+                        "line1": "One Orchard Road",
+                        "line2": "",
+                        "postalCode": "10504",
+                        "region": {
+                          "isocode": "US-NY"
+                        },
+                        "town": "Armonk"
+                      },
+                      {
+                        "country": {
+                          "isocode": "US"
+                        },
+                        "defaultAddress": false,
+                        "firstName": "test8",
+                        "id": "8796260302871",
+                        "lastName": "test8",
+                        "line1": "One Orchard Road",
+                        "line2": "",
+                        "postalCode": "10504",
+                        "region": {
+                          "isocode": "US-NY"
+                        },
+                        "town": "Armonk"
+                      },
+                      {
+                        "country": {
+                          "isocode": "US"
+                        },
+                        "defaultAddress": false,
+                        "firstName": "test9",
+                        "id": "8796260335639",
+                        "lastName": "test9",
+                        "line1": "One Orchard Road",
+                        "line2": "",
+                        "postalCode": "10504",
+                        "region": {
+                          "isocode": "US-NY"
+                        },
+                        "town": "Armonk"
+                      },
+                      {
+                        "country": {
+                          "isocode": "US"
+                        },
+                        "defaultAddress": false,
+                        "firstName": "test10",
+                        "id": "8796260368407",
+                        "lastName": "test10",
+                        "line1": "One Orchard Road",
+                        "line2": "",
+                        "postalCode": "10504",
+                        "region": {
+                          "isocode": "US-NY"
+                        },
+                        "town": "Armonk"
+                      },
+                      {
+                        "country": {
+                          "isocode": "US"
+                        },
+                        "defaultAddress": false,
+                        "firstName": "NewAndy",
+                        "id": "8796260401175",
+                        "lastName": "Grohman",
+                        "line1": "One Orchard Road",
+                        "line2": "",
+                        "postalCode": "10504",
+                        "region": {
+                          "isocode": "US-NY"
+                        },
+                        "town": "Armonk"
+                      },
+                      {
+                        "country": {
+                          "isocode": "US"
+                        },
+                        "defaultAddress": false,
+                        "firstName": "Andy2",
+                        "id": "8796260565015",
+                        "lastName": "Grohman2",
+                        "line1": "One Orchard Road",
+                        "line2": "",
+                        "postalCode": "10504",
+                        "region": {
+                          "isocode": "US-NY"
+                        },
+                        "town": "Armonk"
+                      },
+                      {
+                        "country": {
+                          "isocode": "US"
+                        },
+                        "defaultAddress": false,
+                        "firstName": "Andy3",
+                        "id": "8796260597783",
+                        "lastName": "Grohman3",
+                        "line1": "One Orchard Road",
+                        "line2": "",
+                        "postalCode": "10504",
+                        "region": {
+                          "isocode": "US-NY"
+                        },
+                        "town": "Armonk"
+                      },
+                      {
+                        "country": {
+                          "isocode": "US"
+                        },
+                        "defaultAddress": false,
+                        "firstName": "Andy5",
+                        "id": "8796260630551",
+                        "lastName": "Grohman5",
+                        "line1": "One Orchard Road",
+                        "line2": "",
+                        "postalCode": "10504",
+                        "region": {
+                          "isocode": "US-NY"
+                        },
+                        "town": "Armonk"
+                      },
+                      {
+                        "country": {
+                          "isocode": "US"
+                        },
+                        "defaultAddress": false,
+                        "firstName": "Carlos",
+                        "id": "8796260794391",
+                        "lastName": "Camillion",
+                        "line1": "One Orchard Road",
+                        "line2": "",
+                        "postalCode": "10504",
+                        "region": {
+                          "isocode": "US-NY"
+                        },
+                        "town": "Armonk"
+                      },
+                      {
+                        "country": {
+                          "isocode": "US"
+                        },
+                        "defaultAddress": false,
+                        "firstName": "Ralph",
+                        "id": "8796261220375",
+                        "lastName": "McRalph",
+                        "line1": "200 West Monroe",
+                        "line2": "",
+                        "postalCode": "60680",
+                        "region": {
+                          "isocode": "US-IL"
+                        },
+                        "town": "Chicago"
+                      }
+                    ]
+                  }
+                }
+              output-schema:
+                $schema: 'http://json-schema.org/draft-04/schema#'
+                type: object
+                properties:
+                  address:
+                    type: object
+                    properties:
+                      addresses:
+                        type: array
+                        items:
+                          properties:
+                            country:
+                              type: object
+                              properties:
+                                isocode:
+                                  type: string
+                            defaultAddress:
+                              type: boolean
+                            firstName:
+                              type: string
+                            id:
+                              type: string
+                            lastName:
+                              type: string
+                            line1:
+                              type: string
+                            line2:
+                              type: string
+                            postalCode:
+                              type: string
+                            region:
+                              type: object
+                              properties:
+                                isocode:
+                                  type: string
+                            town:
+                              type: string
+                          type: object
+                title: Parsed JSON
+          - for-each:
+              name: For each
+              assembly:
+                $ref: '#/integration/assemblies/assembly-3'
+              source:
+                expression: '$JSONParserParse2.address.addresses '
+                input:
+                  - variable: Request
+                    $ref: '#/trigger/payload'
+                  - variable: HTTPInvokemethod
+                    $ref: '#/node-output/HTTP Invoke method/response/payload'
+                  - variable: HTTPInvokemethodMetadata
+                    $ref: '#/node-output/HTTP Invoke method/response'
+                  - variable: JSONParserParse
+                    $ref: '#/node-output/JSON Parser Parse/response/payload'
+                  - variable: HTTPInvokemethod2
+                    $ref: '#/node-output/HTTP Invoke method 2/response/payload'
+                  - variable: HTTPInvokemethod2Metadata
+                    $ref: '#/node-output/HTTP Invoke method 2/response'
+                  - variable: JSONParserParse2
+                    $ref: '#/node-output/JSON Parser Parse 2/response/payload'
+              mode: sequential
+              continue-on-error: true
+              display-name: Address
+          - response:
+              name: response-1
+              reply-maps:
+                - title: contactaddress successfully created
+                  status-code: '201'
+                  map:
+                    $map: 'http://ibm.com/appconnect/map/v1'
+                    input:
+                      - variable: Request
+                        $ref: '#/trigger/payload'
+                      - variable: HTTPInvokemethod
+                        $ref: '#/node-output/HTTP Invoke method/response/payload'
+                      - variable: HTTPInvokemethodMetadata
+                        $ref: '#/node-output/HTTP Invoke method/response'
+                      - variable: JSONParserParse
+                        $ref: '#/node-output/JSON Parser Parse/response/payload'
+                      - variable: HTTPInvokemethod2
+                        $ref: '#/node-output/HTTP Invoke method 2/response/payload'
+                      - variable: HTTPInvokemethod2Metadata
+                        $ref: '#/node-output/HTTP Invoke method 2/response'
+                      - variable: JSONParserParse2
+                        $ref: '#/node-output/JSON Parser Parse 2/response/payload'
+                    mappings:
+                      - numberofcontactssynced:
+                          template: '{{$count($JSONParserParse2.address.addresses)}}'
+                  input:
+                    - variable: Request
+                      $ref: '#/trigger/payload'
+                    - variable: HTTPInvokemethod
+                      $ref: '#/node-output/HTTP Invoke method/response/payload'
+                    - variable: HTTPInvokemethodMetadata
+                      $ref: '#/node-output/HTTP Invoke method/response'
+                    - variable: JSONParserParse
+                      $ref: '#/node-output/JSON Parser Parse/response/payload'
+                    - variable: HTTPInvokemethod2
+                      $ref: '#/node-output/HTTP Invoke method 2/response/payload'
+                    - variable: HTTPInvokemethod2Metadata
+                      $ref: '#/node-output/HTTP Invoke method 2/response'
+                    - variable: JSONParserParse2
+                      $ref: '#/node-output/JSON Parser Parse 2/response/payload'
+    assembly-3:
+      assembly:
+        execute:
+          - upsert-action:
+              name: Salesforce Update or create Contact
+              target:
+                $ref: '#/integration/action-interfaces/action-interface-3'
+              map:
+                mappings:
+                  - ExternalContactReference__c:
+                      template: '{{$Foreachitem.id}}'
+                  - FirstName:
+                      template: '{{$Foreachitem.firstName}}'
+                  - LastName:
+                      template: '{{$Foreachitem.lastName}}'
+                  - MailingCity:
+                      template: '{{$Foreachitem.town}}'
+                  - MailingCountry:
+                      template: '{{$substringAfter($Foreachitem.country.isocode, "-")}}'
+                  - MailingPostalCode:
+                      template: '{{$Foreachitem.postalCode}}'
+                  - MailingState:
+                      template: '{{$substringAfter($Foreachitem.region.isocode, "-")}}'
+                  - MailingStreet:
+                      template: '{{$Foreachitem.line1}}'
+                $map: 'http://ibm.com/appconnect/map/v1'
+                input:
+                  - variable: Foreachitem
+                    $ref: '#/block/For each/current-item'
+                  - variable: Request
+                    $ref: '#/trigger/payload'
+                  - variable: HTTPInvokemethod
+                    $ref: '#/node-output/HTTP Invoke method/response/payload'
+                  - variable: HTTPInvokemethodMetadata
+                    $ref: '#/node-output/HTTP Invoke method/response'
+                  - variable: JSONParserParse
+                    $ref: '#/node-output/JSON Parser Parse/response/payload'
+                  - variable: HTTPInvokemethod2
+                    $ref: '#/node-output/HTTP Invoke method 2/response/payload'
+                  - variable: HTTPInvokemethod2Metadata
+                    $ref: '#/node-output/HTTP Invoke method 2/response'
+                  - variable: JSONParserParse2
+                    $ref: '#/node-output/JSON Parser Parse 2/response/payload'
+              filter:
+                where:
+                  ExternalContactReference__c: '{{$Foreachitem.id}}'
+                input:
+                  - variable: Foreachitem
+                    $ref: '#/block/For each/current-item'
+                  - variable: Request
+                    $ref: '#/trigger/payload'
+                  - variable: HTTPInvokemethod
+                    $ref: '#/node-output/HTTP Invoke method/response/payload'
+                  - variable: HTTPInvokemethodMetadata
+                    $ref: '#/node-output/HTTP Invoke method/response'
+                  - variable: JSONParserParse
+                    $ref: '#/node-output/JSON Parser Parse/response/payload'
+                  - variable: HTTPInvokemethod2
+                    $ref: '#/node-output/HTTP Invoke method 2/response/payload'
+                  - variable: HTTPInvokemethod2Metadata
+                    $ref: '#/node-output/HTTP Invoke method 2/response'
+                  - variable: JSONParserParse2
+                    $ref: '#/node-output/JSON Parser Parse 2/response/payload'
+  name: FScontactaddress
+models:
+  contactaddress:
+    name: contactaddress
+    properties:
+      numberofcontactssynced:
+        type: string
+        required: false
+        id: true
+    plural: contactaddress
+    description: ' '
+    operations:
+      create: '#/integration/assemblies/assembly-1'

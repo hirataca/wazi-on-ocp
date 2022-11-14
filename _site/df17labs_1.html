@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Simple guided application-to-application integration">
+<meta name="keywords" content=" ">
+<title>Lab 1 | Cloud Integration</title>
+<link rel="stylesheet" href="css/syntax.css">
+
+
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<!--<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">-->
+<link rel="stylesheet" href="css/modern-business.css">
+<link rel="stylesheet" href="css/lavish-bootstrap.css">
+<link rel="stylesheet" href="css/customstyles.css">
+<link rel="stylesheet" href="css/theme-blue.css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+<script src="js/jquery.navgoco.min.js"></script>
+
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/2.0.0/anchor.min.js"></script>
+<script src="js/toc.js"></script>
+<script src="js/customscripts.js"></script>
+
+<link rel="shortcut icon" href="images/favicon.ico">
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+<link rel="alternate" type="application/rss+xml" title="" href="http://localhost:4000/feed.xml">
+
+    <script>
+        $(document).ready(function() {
+            // Initialize navgoco with default options
+            $("#mysidebar").navgoco({
+                caretHtml: '',
+                accordion: true,
+                openClass: 'active', // open
+                save: false, // leave false or nav highlighting doesn't work right
+                cookie: {
+                    name: 'navgoco',
+                    expires: false,
+                    path: '/'
+                },
+                slide: {
+                    duration: 400,
+                    easing: 'swing'
+                }
+            });
+
+            $("#collapseAll").click(function(e) {
+                e.preventDefault();
+                $("#mysidebar").navgoco('toggle', false);
+            });
+
+            $("#expandAll").click(function(e) {
+                e.preventDefault();
+                $("#mysidebar").navgoco('toggle', true);
+            });
+
+        });
+
+    </script>
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
+    <script>
+        $(document).ready(function() {
+            $("#tg-sb-link").click(function() {
+                $("#tg-sb-sidebar").toggle();
+                $("#tg-sb-content").toggleClass('col-md-9');
+                $("#tg-sb-content").toggleClass('col-md-12');
+                $("#tg-sb-icon").toggleClass('fa-toggle-on');
+                $("#tg-sb-icon").toggleClass('fa-toggle-off');
+            });
+        });
+    </script>
+    
+
+</head>
+<body>
+<!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container topnavlinks">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="fa fa-home fa-lg navbar-brand" href="index.html">&nbsp;<span class="projectTitle"> Cloud Integration</span></a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <!-- toggle sidebar button -->
+                <li><a id="tg-sb-link" href="#"><i id="tg-sb-icon" class="fa fa-toggle-on"></i> Nav</a></li>
+                <!-- entries without drop-downs appear here -->
+                
+                
+                
+                <!-- entries with drop-downs appear here -->
+                <!-- conditional logic to control which topnav appears for the audience defined in the configuration file.-->
+                
+                
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tech Guides<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        
+                        
+                        <li><a href="sfdemo_start.html">App Connect (Studio) Demo for Salesforce</a></li>
+                        
+                        
+                        
+                        <li><a href="df17labs_start.html">App Connect (Designer) Labs for Dreamforce 2017</a></li>
+                        
+                        
+                    </ul>
+                </li>
+                
+                
+                
+			<li>
+
+
+
+  <a class="email" title="Submit feedback" href="#" onclick="javascript:window.location='mailto:andygro@us.ibm.com?subject=Cloud Integration feedback&body=I have some feedback about the Lab 1 page: ' + window.location.href;"><i class="fa fa-envelope-o"></i> Feedback</a>
+
+</li>
+
+		
+                <!--comment out this block if you want to hide search-->
+                <li>
+                    <!--start search-->
+                    <div id="search-demo-container">
+                        <input type="text" id="search-input" placeholder="search...">
+                        <ul id="results-container"></ul>
+                    </div>
+                    <script src="js/jekyll-search.js" type="text/javascript"></script>
+                    <script type="text/javascript">
+                            SimpleJekyllSearch.init({
+                                searchInput: document.getElementById('search-input'),
+                                resultsContainer: document.getElementById('results-container'),
+                                dataSource: 'search.json',
+                                searchResultTemplate: '<li><a href="{url}" title="Lab 1">{title}</a></li>',
+                    noResultsText: 'No results found.',
+                            limit: 10,
+                            fuzzy: true,
+                    })
+                    </script>
+                    <!--end search-->
+                </li>
+            </ul>
+        </div>
+        </div>
+        <!-- /.container -->
+</nav>
+
+<!-- Page Content -->
+<div class="container">
+    <div class="col-lg-12">&nbsp;</div>
+    <!-- Content Row -->
+    <div class="row">
+        
+        
+            <!-- Sidebar Column -->
+            <div class="col-md-3" id="tg-sb-sidebar">
+                
+
+
+
+
+
+
+
+<div style="position: fixed"> <!--;overflow-y: auto;height: 90vh;-->
+<ul id="mysidebar" class="nav">
+    <li class="sidebarTitle"> </li>
+    
+    
+    
+    <li>
+        <a href="#">App Connect (Designer) Labs for Dreamforce 2017</a>
+        <ul>
+            
+            
+            
+            <li><a href="df17labs_start.html">Introduction and Getting Started</a></li>
+            
+            
+            
+            
+            
+            
+            <li class="active"><a href="df17labs_1.html">1. Lab 1 - Connect your applications</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="df17labs_2.html">2. Lab 2 - Create an API using flows</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="df17labs_creds.html">Logon Information</a></li>
+            
+            
+            
+            
+        </ul>
+     </li>
+       
+        
+        
+        <!-- if you aren't using the accordion, uncomment this block:
+           <p class="external">
+               <a href="#" id="collapseAll">Collapse All</a> | <a href="#" id="expandAll">Expand All</a>
+           </p>
+           -->
+</ul>
+</div>
+<!-- this highlights the active parent class in the navgoco sidebar. this is critical so that the parent expands when you're viewing a page. This must appear below the sidebar code above. Otherwise, if placed inside customscripts.js, the script runs before the sidebar code runs and the class never gets inserted.-->
+<script>$("li.active").parents('li').toggleClass("active");</script>
+
+            </div>
+            
+        
+
+        <!-- Content Column -->
+        <div class="col-md-9" id="tg-sb-content">
+            <div class="post-header">
+   <h1 class="post-title-main">Lab 1</h1>
+</div>
+
+
+
+<div class="post-content">
+
+   
+    <div class="summary">Simple guided application-to-application integration</div>
+   
+
+    
+
+
+    
+
+  <p> </p>
+<h1 id="integration-scenario-1--connect-your-applications">Integration Scenario 1 – Connect your applications</h1>
+
+<h2 id="overview">Overview</h2>
+<p><img src="./images/df17labs/cassie.png" alt="" /><br />
+Cassie is a rising star in the marketing department. She is always looking for new digital tools to engage with customers, and has recently started using a SaaS service called Mailchimp to revolutionise email marketing within Paradise Audiophiles. However, she is frustrated with how much time she spends sifting through responses, and reconciling them with their Salesforce CRM system.</p>
+
+<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> Refer to the <a href="df17labs_creds.html">Logon Credentials</a> page for the userids and passwords you should use on your laptop. Everywhere you see ibmappconnect0XX in the lab instructions, replace XX with the ID you have been assigned.</div>
+
+<h2 id="log-into-ibm-app-connect">Log into IBM App Connect</h2>
+<ol>
+  <li>
+    <p>Launch the Chrome browser.</p>
+  </li>
+  <li>
+    <p>In your browser, go to <a href="https://designer.appconnect.ibmcloud.com/">https://designer.appconnect.ibmcloud.com/</a> and sign in with the ibmappconnect0XX@gmail.com IBMid account you have been given. <br />
+<img src="./images/df17labs/df1-image0.png" alt="" /></p>
+  </li>
+</ol>
+
+<h2 id="create-or-update-your-mailing-list-in-mailchimp">Create or update your mailing list in Mailchimp</h2>
+<p>Let us set up a new e-mail marketing campaign in Mailchimp.</p>
+<ol>
+  <li>Log into https://www.mailchimp.com with the credentials supplied: <br />
+<img src="./images/df17labs/df1-image1.png" alt="" />
+    <div class="alert alert-warning" role="alert"><i class="fa fa-warning"></i> <b>Important:</b> If prompted for verification, click I’ll do this later… If that is not an option, verify using security questions, and the answer to any question about a city is <strong>Armonk</strong></div>
+    <p><img src="./images/df17labs/df1-image25.png" alt="" /></p>
+  </li>
+  <li>
+    <p>Click on Lists: <br />
+<img src="./images/df17labs/df1-image2.png" alt="" /></p>
+  </li>
+  <li>
+    <p>If there is a list called “Audiophiles”, then click it and select all existing subscribers and delete them: <br />
+<img src="./images/df17labs/df1-image3.png" alt="" /></p>
+  </li>
+  <li>
+    <p>If the list does not exist, create it with following information:</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="text-align: center">Field</th>
+          <th style="text-align: center">Value</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="text-align: center">List Name</td>
+          <td style="text-align: center"><strong>Audiophiles</strong></td>
+        </tr>
+        <tr>
+          <td style="text-align: center">Default from name</td>
+          <td style="text-align: center">ibmappconnect0XX@gmail.com</td>
+        </tr>
+        <tr>
+          <td style="text-align: center">Default from name</td>
+          <td style="text-align: center"><strong>App Connect</strong></td>
+        </tr>
+        <tr>
+          <td style="text-align: center">Reminder</td>
+          <td style="text-align: center"><strong>You subscribed ad an Audiophile using the online form</strong></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>After you have saved the list, then go Settings -&gt; List fields and …, and then add fields and configure as shown below: <br />
+<img src="./images/df17labs/df1-image4.png" alt="" /></p>
+  </li>
+</ol>
+
+<h2 id="create-a-flow-in-ibm-app-connect">Create a Flow in IBM App Connect</h2>
+<ol>
+  <li>Return to IBM App Connect in your browser and if there are any flows on the dashboard written by a previous attendee, then you may stop and delete them if you wish.</li>
+  <li>
+    <p>Then, from the dashboard, click New to create a new event-driven flow:   <br />
+<img src="./images/df17labs/df1-image5.png" alt="" /></p>
+  </li>
+  <li>
+    <p>You should see the following screen where you need to choose and configure the event that should trigger this flow: <br />
+<img src="./images/df17labs/df1-image6.png" alt="" /></p>
+  </li>
+  <li>
+    <p>Select Mailchimp as the application and “New Subscriber” as the event: <br />
+<img src="./images/df17labs/df1-image7.png" alt="" /></p>
+  </li>
+  <li>
+    <p>If prompted, click “Connect to Mailchimp” and authorize IBM App Connect using the credentials supplied:  <br />
+<img src="./images/df17labs/df1-image8.png" alt="" />  <br />
+<img src="./images/df17labs/df1-image9.png" alt="" /></p>
+  </li>
+  <li>Select the “Audiophiles” list:  <br />
+<img src="./images/df17labs/df1-image10.png" alt="" /></li>
+</ol>
+
+<h2 id="configure-the-flow-to-create-salesforce-leads">Configure the Flow to create Salesforce Leads</h2>
+<p>You now need to modify the flow to add each subscriber as a sales Lead in Salesforce.</p>
+
+<ol>
+  <li>
+    <p>Click the plus to add an action to the flow, and select Salesforce as the application, and “Create Lead” as the action:   <br />
+<img src="./images/df17labs/df1-image11.png" alt="" /></p>
+  </li>
+  <li>
+    <p>Scroll down the list of Salesforce entities to find the Leads, then click Create Lead: <br />
+<img src="./images/df17labs/df1-image12.png" alt="" /></p>
+  </li>
+  <li>
+    <p>If prompted click “Connect to Salesforce” and log into salesforce using the details supplied: <br />
+<img src="./images/df17labs/df1-image13.png" alt="" /></p>
+  </li>
+</ol>
+
+<div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i> <b>Note:</b> You might need to log into https://gmail.com with the supplied details to obtain a verification code during the sign-in process.</div>
+
+<ol>
+  <li>Configure the “Create Lead” action with fields from your list in Mailchimp. To do this, start typing, or click the fields symbol to display the available fields:   <br />
+<img src="./images/df17labs/df1-image14.png" alt="" /></li>
+</ol>
+
+<h2 id="switch-on-your-completed-flow">Switch on your completed Flow</h2>
+
+<p>Flows need to be explicitly “switched on” to start them. From the flow designer, type in a meaningful name for the flow press the “Exit and switch on” button: <br />
+<img src="./images/df17labs/df1-image15.png" alt="" /></p>
+
+<p>You will see that a tile appears on the dashboard indicating the flow is now running:  <br />
+<img src="./images/df17labs/df1-image16.png" alt="" /></p>
+
+<p>You are now ready to test your flow.</p>
+
+<h2 id="lets-try-it-out">Let’s try it out!</h2>
+<p>If we generate the event in the source application we should be able to observe the effects in the target application:</p>
+
+<ol>
+  <li>
+    <p>Generate the subscription by acting like a potential prospect who is signing up online. To do this, we need to get the URL for the signup subscription form. So, either go back to mailchimp in your browser or log back into <a href="https://www.mailchimp.com">https://www.mailchimp.com</a></p>
+  </li>
+  <li>
+    <p>Select “Lists”, then “Audiophiles”, then “Signup forms”, then “General forms”. You should see a form as below, with a “Signup form URL”:  <br />
+<img src="./images/df17labs/df1-image17.png" alt="" /></p>
+  </li>
+  <li>
+    <p>Open the the “Signup form URL” in a new browser window, and fill in some details including the <strong><em>ibmappconnect0XX@gmail.com</em></strong> e-mail address you have been using as a login during the lab:  <br />
+<img src="./images/df17labs/df1-image18.png" alt="" /></p>
+  </li>
+  <li>
+    <p>Once you click “Subscribe to list” you will need to do a Captcha verification:  <br />
+<img src="./images/df17labs/df1-image19.png" alt="" /></p>
+  </li>
+  <li>
+    <p>You <em>may</em> need to log into <a href="https://gmail.com">https://gmail.com</a> as your ibmappconnect0<strong>XX</strong> user and click the confirmation e-mail.  If you do not receive this emai, continue to the next step. <br />
+<img src="./images/df17labs/df1-image20.png" alt="" /></p>
+
+    <div class="alert alert-warning" role="alert"><i class="fa fa-warning"></i> <b>Important:</b> If prompted for verification, choose Confirm your recovery email, then enter <em>ibmappconnect</em><strong>000</strong><em>@yahoo.com</em> </div>
+    <p><img src="./images/df17labs/df1-image23.png" alt="" /> <img src="./images/df17labs/df1-image24.png" alt="" /></p>
+  </li>
+  <li>
+    <p>We want to see the result in Salesforce. Open a browser tab and log into Salesforce at <a href="https://login.salesforce.com">https://login.salesforce.com</a> <br />
+ If prompted to register your mobile phone, click I’ll do it later.</p>
+  </li>
+  <li>
+    <p>Click on the Leads tab and find the new lead:  <br />
+<img src="./images/df17labs/df1-image21.png" alt="" /></p>
+
+    <p>Open the Lead and check that the fields are set as expected.</p>
+
+    <p>If your Salesforce dashboard does not look like the above, then go to the App Launcher in the top left and then navigate to the Leads:  <br />
+ <img src="./images/df17labs/df1-image22.png" alt="" /></p>
+  </li>
+</ol>
+
+<h2 id="thank-you">Thank You!</h2>
+
+<p>In this Lab you’ve seen how IBM App Connect provides features for simple, guided app-to-app integration. With IBM App Connect you can link your applications so that when something happens in one application, other relevant applications get updated automatically, so you can:</p>
+
+<ul>
+  <li>Stop wasting time on repetitive manual tasks</li>
+  <li>Use this intuitive business tool to take back control</li>
+  <li>Link your apps in a few simple steps</li>
+</ul>
+
+<h3 id="want-to-learn-more">Want to learn more?</h3>
+<p>If you didn’t complete the lab exercises or want to go further, then why not sign up for a free trial? Go to <a href="https://designer.appconnect.ibmcloud.com/">https://designer.appconnect.ibmcloud.com/</a>newAccount and complete the registration.</p>
+
+<h3 id="do-you-want-to-keep-up-to-date-or-influence-the-product">Do you want to keep up to date or influence the product?</h3>
+<p>IBM App Connect is a rapidly evolving service in IBM Cloud. If you have been interested by what you’ve explored in the product today, then please sign up to our sponsored user program. The program provides the opportunity for you to influence how we extend and enhance the product to meet the needs of our customers.  <br />
+<img src="./images/df17labs/df2-image45.png" alt="" /></p>
+
+
+    <div class="tags">
+        
+    </div>
+
+
+
+</div>
+
+<hr class="shaded"/>
+
+<footer>
+            <div class="row">
+                <div class="col-lg-6 footer-left">
+               &copy;2017 IBM. All rights reserved. <br />
+ Site last generated: Nov 8, 2017 <br />
+				</div>
+				<div class="col-lg-6 footer-right">
+					<p><img src="images/ibm-logo-small.png" alt="IBM"/></p>
+                </div>
+            </div>
+</footer>
+
+
+        </div>
+    <!-- /.row -->
+</div>
+<!-- /.container -->
+    </div>
+
+</body>
+
+</html>

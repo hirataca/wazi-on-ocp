@@ -1,0 +1,26 @@
+# This is your sidebar TOC. The sidebar code loops through sections here and provides the appropriate formatting.
+
+entries:
+- title: sidebar
+  levels: one
+  folders:
+
+  - title: App Connect (Designer) Labs for Dreamforce 2017
+    output: web
+    folderitems:
+    - title: Introduction and Getting Started
+      url: /df17labs_start.html
+      output: web
+    - title: 1. Lab 1 - Connect your applications
+      url: /df17labs_1.html
+      output: web
+    - title: 2. Lab 2 - Create an API using flows
+      url: /df17labs_2.html
+      output: web
+    - title: Logon Information
+      url: /df17labs_creds.html
+      output: web
+#    - title: 3. Lab 3 (TBD)
+#      url: /df17labs_3.html
+#      output: web
+      

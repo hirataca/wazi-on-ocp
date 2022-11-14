@@ -1,0 +1,23 @@
+# This is your sidebar TOC. The sidebar code loops through sections here and provides the appropriate formatting.
+
+entries:
+- title: sidebar
+  levels: one
+  folders:
+
+  - title: App Connect (Studio) Demo for Salesforce
+    output: web
+    folderitems:
+    - title: Introduction
+      url: /sfdemo_start.html
+      output: web
+    - title: 0. Setup access to Bluedemos.com
+      url: /sfdemo_step0.html
+      output: web
+    - title: 1. Log into Bluedemos and reserve your demo instance
+      url: /sfdemo_step1.html
+      output: web
+    - title: 2. Running the demo
+      url: /sfdemo_step2.html
+      output: web
+      

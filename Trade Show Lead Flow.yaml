@@ -1,0 +1,198 @@
+integration: 'http://ibm.com/appconnect/integration/v2/integrationFile'
+integration:
+  type: trigger-action
+  trigger-interfaces:
+    trigger-interface-1:
+      type: event-trigger
+      triggers:
+        CREATED:
+          input-context:
+            data: Campaign
+          assembly:
+            $ref: '#/integration/assemblies/assembly-1'
+          options: {}
+      connector-type: salesforce
+      account-name: Account 1
+  action-interfaces:
+    action-interface-1:
+      type: api-action
+      business-object: Leads
+      connector-type: ibmdb2
+      account-name: Account 1
+      actions:
+        RETRIEVEALL: {}
+    action-interface-2:
+      type: api-action
+      business-object: ClassifyText
+      connector-type: watsonnlclassifier
+      account-name: Account 1
+      actions:
+        CLASSIFYTEXT: {}
+    action-interface-3:
+      type: api-action
+      business-object: Lead
+      connector-type: salesforce
+      account-name: Account 1
+      actions:
+        CREATE: {}
+    action-interface-4:
+      type: api-action
+      business-object: CampaignMember
+      connector-type: salesforce
+      account-name: Account 1
+      actions:
+        CREATE: {}
+  assemblies:
+    assembly-1:
+      assembly:
+        execute:
+          - retrieve-action:
+              name: IBM Db2 Retrieve LEADS records
+              target:
+                $ref: '#/integration/action-interfaces/action-interface-1'
+              filter:
+                limit: 99
+              allow-empty-output: true
+              allow-truncation: true
+              pagination-type: SKIP_LIMIT
+          - for-each:
+              name: For each
+              assembly:
+                $ref: '#/integration/assemblies/assembly-2'
+              source:
+                expression: '$IBMDb2RetrieveLEADSrecords '
+                input:
+                  - variable: Trigger
+                    $ref: '#/trigger/payload'
+                  - variable: IBMDb2RetrieveLEADSrecords
+                    $ref: >-
+                      #/node-output/IBM Db2 Retrieve LEADS
+                      records/response/payload
+                  - variable: IBMDb2RetrieveLEADSrecordsMetadata
+                    $ref: '#/node-output/IBM Db2 Retrieve LEADS records/response'
+              mode: parallel
+              continue-on-error: true
+              map:
+                $map: 'http://ibm.com/appconnect/map/v1'
+                mappings: []
+                input:
+                  - variable: Trigger
+                    $ref: '#/trigger/payload'
+                  - variable: IBMDb2RetrieveLEADSrecords
+                    $ref: >-
+                      #/node-output/IBM Db2 Retrieve LEADS
+                      records/response/payload
+                  - variable: IBMDb2RetrieveLEADSrecordsMetadata
+                    $ref: '#/node-output/IBM Db2 Retrieve LEADS records/response'
+              display-name: IBM Db2 Leads
+    assembly-2:
+      assembly:
+        execute:
+          - custom-action:
+              name: IBM Watson Natural Language Classifier Classify text
+              target:
+                $ref: '#/integration/action-interfaces/action-interface-2'
+              action: CLASSIFYTEXT
+              map:
+                mappings:
+                  - classifier_id:
+                      template: 8fc642x299-nlc-3559
+                  - text:
+                      template: '{{$Foreachitem.leadtxt}}'
+                $map: 'http://ibm.com/appconnect/map/v1'
+                input:
+                  - variable: Foreachitem
+                    $ref: '#/block/For each/current-item'
+                  - variable: Trigger
+                    $ref: '#/trigger/payload'
+                  - variable: IBMDb2RetrieveLEADSrecords
+                    $ref: >-
+                      #/node-output/IBM Db2 Retrieve LEADS
+                      records/response/payload
+                  - variable: IBMDb2RetrieveLEADSrecordsMetadata
+                    $ref: '#/node-output/IBM Db2 Retrieve LEADS records/response'
+          - create-action:
+              name: Salesforce Create lead
+              target:
+                $ref: '#/integration/action-interfaces/action-interface-3'
+              map:
+                mappings:
+                  - City:
+                      template: '{{$Foreachitem.city}}'
+                  - Company:
+                      template: '{{$Foreachitem.company}}'
+                  - Country:
+                      template: '{{$Foreachitem.country}}'
+                  - Description:
+                      template: '{{$Foreachitem.leadtxt}}'
+                  - FirstName:
+                      template: '{{$Foreachitem.firstname}}'
+                  - LastName:
+                      template: '{{$Foreachitem.lastname}}'
+                  - LeadSource:
+                      template: Other
+                  - Phone:
+                      template: '{{$Foreachitem.phone}}'
+                  - PostalCode:
+                      template: '{{$Foreachitem.postalcd}}'
+                  - Rating:
+                      template: >-
+                        {{$IBMWatsonNaturalLanguageClassifierClassifytext.top_class}}
+                  - State:
+                      template: '{{$Foreachitem.region}}'
+                  - Status:
+                      template: Open - Not Contacted
+                  - Street:
+                      template: >-
+                        {{$Foreachitem.address1}} {{$Foreachitem.address2}}
+                        {{$Foreachitem.address3}} {{$Foreachitem.address4}}
+                $map: 'http://ibm.com/appconnect/map/v1'
+                input:
+                  - variable: Foreachitem
+                    $ref: '#/block/For each/current-item'
+                  - variable: Trigger
+                    $ref: '#/trigger/payload'
+                  - variable: IBMWatsonNaturalLanguageClassifierClassifytext
+                    $ref: >-
+                      #/block/For each/node-output/IBM Watson Natural Language
+                      Classifier Classify text/response/payload
+                  - variable: IBMDb2RetrieveLEADSrecords
+                    $ref: >-
+                      #/node-output/IBM Db2 Retrieve LEADS
+                      records/response/payload
+                  - variable: IBMDb2RetrieveLEADSrecordsMetadata
+                    $ref: '#/node-output/IBM Db2 Retrieve LEADS records/response'
+          - create-action:
+              name: Salesforce Create campaign member
+              target:
+                $ref: '#/integration/action-interfaces/action-interface-4'
+              map:
+                mappings:
+                  - CampaignId:
+                      template: '{{$Trigger.Id}}'
+                  - LeadId:
+                      template: '{{$SalesforceCreatelead.Id}}'
+                  - Status:
+                      template: Received
+                $map: 'http://ibm.com/appconnect/map/v1'
+                input:
+                  - variable: Foreachitem
+                    $ref: '#/block/For each/current-item'
+                  - variable: Trigger
+                    $ref: '#/trigger/payload'
+                  - variable: IBMWatsonNaturalLanguageClassifierClassifytext
+                    $ref: >-
+                      #/block/For each/node-output/IBM Watson Natural Language
+                      Classifier Classify text/response/payload
+                  - variable: SalesforceCreatelead
+                    $ref: >-
+                      #/block/For each/node-output/Salesforce Create
+                      lead/response/payload
+                  - variable: IBMDb2RetrieveLEADSrecords
+                    $ref: >-
+                      #/node-output/IBM Db2 Retrieve LEADS
+                      records/response/payload
+                  - variable: IBMDb2RetrieveLEADSrecordsMetadata
+                    $ref: '#/node-output/IBM Db2 Retrieve LEADS records/response'
+  name: Trade Show Lead Flow
+models: {}

@@ -1,0 +1,99 @@
+$integration: 'http://ibm.com/appconnect/integration/v2/integrationFile'
+integration:
+  type: api
+  trigger-interfaces:
+    trigger-interface-1:
+      triggers:
+        createOauthtoken:
+          assembly:
+            $ref: '#/integration/assemblies/assembly-1'
+          input-context:
+            data: oauthtoken
+          output-context:
+            data: oauthtoken
+      options:
+        resources:
+          - business-object: oauthtoken
+            model:
+              $ref: '#/models/oauthtoken'
+            triggers:
+              create: createOauthtoken
+      type: api-trigger
+  action-interfaces: {}
+  assemblies:
+    assembly-1:
+      assembly:
+        execute:
+          - response:
+              name: response-1
+              reply-maps:
+                - title: oauthtoken successfully created
+                  status-code: '201'
+                  map:
+                    $map: 'http://ibm.com/appconnect/map/v1'
+                    input:
+                      - variable: Request
+                        $ref: '#/trigger/payload'
+                    mappings:
+                      - access_token:
+                          template: cb6c155c-5c67-44d3-9aa8-fe93f909ec16
+                      - client_id:
+                          template: '{{$Request.client_id}}'
+                      - expires_in:
+                          template: '1986886'
+                      - scope:
+                          template: basic
+                      - token_type:
+                          template: bearer
+                  input:
+                    - variable: Request
+                      $ref: '#/trigger/payload'
+  name: FSOauthTokenStub
+models:
+  oauthtoken:
+    name: oauthtoken
+    properties:
+      client_id:
+        type: string
+        required: false
+        id: true
+      client_secret:
+        type: string
+        required: false
+        id: false
+      grant_type:
+        type: string
+        required: false
+        id: false
+      username:
+        type: string
+        required: false
+        id: false
+      password:
+        type: string
+        required: false
+        id: false
+      access_token:
+        type: string
+        required: false
+        id: false
+      token_type:
+        type: string
+        required: false
+        id: false
+      refresh_token:
+        type: string
+        required: false
+        id: false
+      expires_in:
+        type: string
+        required: false
+        id: false
+      scope:
+        type: string
+        required: false
+        id: false
+    plural: oauthtoken
+    description: ' '
+    operations:
+      create: '#/integration/assemblies/assembly-1'

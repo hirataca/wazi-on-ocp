@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="The account usernames and passwords are assigned by laptop.">
+<meta name="keywords" content=" ">
+<title>Logon Information | Cloud Integration</title>
+<link rel="stylesheet" href="css/syntax.css">
+
+
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<!--<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">-->
+<link rel="stylesheet" href="css/modern-business.css">
+<link rel="stylesheet" href="css/lavish-bootstrap.css">
+<link rel="stylesheet" href="css/customstyles.css">
+<link rel="stylesheet" href="css/theme-blue.css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+<script src="js/jquery.navgoco.min.js"></script>
+
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/2.0.0/anchor.min.js"></script>
+<script src="js/toc.js"></script>
+<script src="js/customscripts.js"></script>
+
+<link rel="shortcut icon" href="images/favicon.ico">
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+<link rel="alternate" type="application/rss+xml" title="" href="http://localhost:4000/feed.xml">
+
+    <script>
+        $(document).ready(function() {
+            // Initialize navgoco with default options
+            $("#mysidebar").navgoco({
+                caretHtml: '',
+                accordion: true,
+                openClass: 'active', // open
+                save: false, // leave false or nav highlighting doesn't work right
+                cookie: {
+                    name: 'navgoco',
+                    expires: false,
+                    path: '/'
+                },
+                slide: {
+                    duration: 400,
+                    easing: 'swing'
+                }
+            });
+
+            $("#collapseAll").click(function(e) {
+                e.preventDefault();
+                $("#mysidebar").navgoco('toggle', false);
+            });
+
+            $("#expandAll").click(function(e) {
+                e.preventDefault();
+                $("#mysidebar").navgoco('toggle', true);
+            });
+
+        });
+
+    </script>
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
+    <script>
+        $(document).ready(function() {
+            $("#tg-sb-link").click(function() {
+                $("#tg-sb-sidebar").toggle();
+                $("#tg-sb-content").toggleClass('col-md-9');
+                $("#tg-sb-content").toggleClass('col-md-12');
+                $("#tg-sb-icon").toggleClass('fa-toggle-on');
+                $("#tg-sb-icon").toggleClass('fa-toggle-off');
+            });
+        });
+    </script>
+    
+
+</head>
+<body>
+<!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container topnavlinks">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="fa fa-home fa-lg navbar-brand" href="index.html">&nbsp;<span class="projectTitle"> Cloud Integration</span></a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <!-- toggle sidebar button -->
+                <li><a id="tg-sb-link" href="#"><i id="tg-sb-icon" class="fa fa-toggle-on"></i> Nav</a></li>
+                <!-- entries without drop-downs appear here -->
+                
+                
+                
+                <!-- entries with drop-downs appear here -->
+                <!-- conditional logic to control which topnav appears for the audience defined in the configuration file.-->
+                
+                
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tech Guides<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        
+                        
+                        <li><a href="sfdemo_start.html">App Connect (Studio) Demo for Salesforce</a></li>
+                        
+                        
+                        
+                        <li><a href="df17labs_start.html">App Connect (Designer) Labs for Dreamforce 2017</a></li>
+                        
+                        
+                    </ul>
+                </li>
+                
+                
+                
+			<li>
+
+
+
+  <a class="email" title="Submit feedback" href="#" onclick="javascript:window.location='mailto:andygro@us.ibm.com?subject=Cloud Integration feedback&body=I have some feedback about the Logon Information page: ' + window.location.href;"><i class="fa fa-envelope-o"></i> Feedback</a>
+
+</li>
+
+		
+                <!--comment out this block if you want to hide search-->
+                <li>
+                    <!--start search-->
+                    <div id="search-demo-container">
+                        <input type="text" id="search-input" placeholder="search...">
+                        <ul id="results-container"></ul>
+                    </div>
+                    <script src="js/jekyll-search.js" type="text/javascript"></script>
+                    <script type="text/javascript">
+                            SimpleJekyllSearch.init({
+                                searchInput: document.getElementById('search-input'),
+                                resultsContainer: document.getElementById('results-container'),
+                                dataSource: 'search.json',
+                                searchResultTemplate: '<li><a href="{url}" title="Logon Information">{title}</a></li>',
+                    noResultsText: 'No results found.',
+                            limit: 10,
+                            fuzzy: true,
+                    })
+                    </script>
+                    <!--end search-->
+                </li>
+            </ul>
+        </div>
+        </div>
+        <!-- /.container -->
+</nav>
+
+<!-- Page Content -->
+<div class="container">
+    <div class="col-lg-12">&nbsp;</div>
+    <!-- Content Row -->
+    <div class="row">
+        
+        
+            <!-- Sidebar Column -->
+            <div class="col-md-3" id="tg-sb-sidebar">
+                
+
+
+
+
+
+
+
+<div style="position: fixed"> <!--;overflow-y: auto;height: 90vh;-->
+<ul id="mysidebar" class="nav">
+    <li class="sidebarTitle"> </li>
+    
+    
+    
+    <li>
+        <a href="#">App Connect (Designer) Labs for Dreamforce 2017</a>
+        <ul>
+            
+            
+            
+            <li><a href="df17labs_start.html">Introduction and Getting Started</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="df17labs_1.html">1. Lab 1 - Connect your applications</a></li>
+            
+            
+            
+            
+            
+            
+            <li><a href="df17labs_2.html">2. Lab 2 - Create an API using flows</a></li>
+            
+            
+            
+            
+            
+            
+            <li class="active"><a href="df17labs_creds.html">Logon Information</a></li>
+            
+            
+            
+            
+        </ul>
+     </li>
+       
+        
+        
+        <!-- if you aren't using the accordion, uncomment this block:
+           <p class="external">
+               <a href="#" id="collapseAll">Collapse All</a> | <a href="#" id="expandAll">Expand All</a>
+           </p>
+           -->
+</ul>
+</div>
+<!-- this highlights the active parent class in the navgoco sidebar. this is critical so that the parent expands when you're viewing a page. This must appear below the sidebar code above. Otherwise, if placed inside customscripts.js, the script runs before the sidebar code runs and the class never gets inserted.-->
+<script>$("li.active").parents('li').toggleClass("active");</script>
+
+            </div>
+            
+        
+
+        <!-- Content Column -->
+        <div class="col-md-9" id="tg-sb-content">
+            <div class="post-header">
+   <h1 class="post-title-main">Logon Information</h1>
+</div>
+
+
+
+<div class="post-content">
+
+   
+    <div class="summary">The account usernames and passwords are assigned by laptop.</div>
+   
+
+    
+
+
+    
+
+  <h2 id="usernames">Usernames</h2>
+
+<p>The account usernames are assigned by laptop.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Laptop</th>
+      <th style="text-align: center">Username</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">1</td>
+      <td style="text-align: center">ibmappconnect<strong>001</strong>@gmail.com</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">2</td>
+      <td style="text-align: center">ibmappconnect<strong>002</strong>@gmail.com</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">3</td>
+      <td style="text-align: center">ibmappconnect<strong>003</strong>@gmail.com</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">4</td>
+      <td style="text-align: center">ibmappconnect<strong>004</strong>@gmail.com</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">5</td>
+      <td style="text-align: center">ibmappconnect<strong>005</strong>@gmail.com</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">6</td>
+      <td style="text-align: center">ibmappconnect<strong>006</strong>@gmail.com</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="passwords">Passwords</h2>
+
+<p><em>Passwords are case sensitive, and include special characters like“_” (underscore). Pay particular attention to those.</em></p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Application</th>
+      <th style="text-align: center">Laptop 1</th>
+      <th style="text-align: center">Laptop 2</th>
+      <th style="text-align: center">Laptop 3</th>
+      <th style="text-align: center">Laptop 4</th>
+      <th style="text-align: center">Laptop 5</th>
+      <th style="text-align: center">Laptop 6</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><a href="https://designer.appconnect.ibmcloud.com">AppConnect</a></td>
+      <td style="text-align: center">_2N4E7UN</td>
+      <td style="text-align: center">e-3TKSCq</td>
+      <td style="text-align: center">yCiOCE9o</td>
+      <td style="text-align: center">No4O5Glu</td>
+      <td style="text-align: center">92pHxY0e</td>
+      <td style="text-align: center">p4NMoqc0</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><a href="https://gmail.com">Gmail</a></td>
+      <td style="text-align: center">_2N4E7UN</td>
+      <td style="text-align: center">e-3TKSCq</td>
+      <td style="text-align: center">yCiOCE9o</td>
+      <td style="text-align: center">No4O5Glu</td>
+      <td style="text-align: center">92pHxY0e</td>
+      <td style="text-align: center">p4NMoqc0</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><a href="https://www.mailchimp.com">MailChimp</a></td>
+      <td style="text-align: center">nU7E4N2_</td>
+      <td style="text-align: center">e-3TKSCq</td>
+      <td style="text-align: center">yCiOCE9-</td>
+      <td style="text-align: center">No4O5Gl-</td>
+      <td style="text-align: center">92pHxY0-</td>
+      <td style="text-align: center">p4NMoqc-</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><a href="https://login.salesforce.com">Salesforce</a></td>
+      <td style="text-align: center">NU7E4N2_</td>
+      <td style="text-align: center">e-3TKSCq_</td>
+      <td style="text-align: center">yCiOCE9o_</td>
+      <td style="text-align: center">No4O5Glu_</td>
+      <td style="text-align: center">92pHxY0e_</td>
+      <td style="text-align: center">p4NMoqc0_</td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+    <div class="tags">
+        
+    </div>
+
+
+
+</div>
+
+<hr class="shaded"/>
+
+<footer>
+            <div class="row">
+                <div class="col-lg-6 footer-left">
+               &copy;2017 IBM. All rights reserved. <br />
+ Site last generated: Nov 8, 2017 <br />
+				</div>
+				<div class="col-lg-6 footer-right">
+					<p><img src="images/ibm-logo-small.png" alt="IBM"/></p>
+                </div>
+            </div>
+</footer>
+
+
+        </div>
+    <!-- /.row -->
+</div>
+<!-- /.container -->
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,16 @@
+# This is your sidebar TOC. The sidebar code loops through sections here and provides the appropriate formatting.
+
+entries:
+- title: sidebar
+  levels: one
+  folders:
+
+  - title: App Connect (Designer) Demo for FastStart 2018
+    output: web
+    folderitems:
+    - title: Introduction
+      url: /fs18labs_start.html
+      output: web
+    - title: 1. Lab 1
+      url: /fs18labs_1.html
+      output: web
