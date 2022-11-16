@@ -1,10 +1,9 @@
-# TechGuides
+# TechGuides - Lab 1
 ***
 
-To add another topic `xyz`:  
-
-1. Create a new folder `/pages/xyz` to host the markdown pages.  
-2. Create a new `xyz_sidebar.yml` definition in `/_data/sidebars` to list the subtopics.  
-3. Modify `/_data/sidebars/home_sidebar.yml` to add the new topic.
-3. Modify `/_data/topnav.yml` to add the new topic.
-4. Modify `/_includes/custom/sidebarconfigs.html` to include the new sidebar definition.  
+Overview of development tasks
+To complete this tutorial, you will perform the following tasks:
+1. Connect to a Redhat Openshift Cluster
+2. Create an IBM Cloud Account (??)
+3. Access Wazi Lab
+4. 
