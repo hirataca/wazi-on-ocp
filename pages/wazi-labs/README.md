@@ -1,9 +1,6 @@
 # TechGuides - Lab 1
 ***
 
-Overview of development tasks
-To complete this tutorial, you will perform the following tasks:
-1. Connect to a Redhat Openshift Cluster
-2. Create an IBM Cloud Account (??)
-3. Access Wazi Lab
-4. 
+## Overview
+1. Create a Wazi Instance using Wazi Operator
+2. Validate the connection using HOD or Pcomm
